@@ -1,0 +1,9 @@
+# ninja log v6
+4	681	1738656423769739882	file-explorer_autogen/timestamp	24362c9e0b7a88ea
+4	681	1738656423769739882	file-explorer_autogen/mocs_compilation.cpp	24362c9e0b7a88ea
+4	681	1738656423769739882	/home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/timestamp	24362c9e0b7a88ea
+4	681	1738656423769739882	/home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/mocs_compilation.cpp	24362c9e0b7a88ea
+692	8210	1738656423789796852	CMakeFiles/file-explorer.dir/file-explorer_autogen/mocs_compilation.cpp.o	e106ee2c0c5019
+692	8760	1738656423789796852	CMakeFiles/file-explorer.dir/main.cpp.o	2b3c61baed52e1c3
+693	9072	1738656423793808246	CMakeFiles/file-explorer.dir/mainwindow.cpp.o	58890a038d2ec305
+9072	10067	1738656432169367076	file-explorer	70e7e79cbbab7e8d
