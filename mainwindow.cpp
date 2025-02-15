@@ -70,10 +70,10 @@ void mainWindow::on_btnCreateDir_clicked()
 
 void mainWindow::on_btnGoUp_clicked()
 {
-    QString newDir = currentDir.left(currentDir.lastIndexOf(QDir::separator()));
-    if (QDir(newDir).exists())
+    QDir newDir(currentDir);
+    if (newDir.cdUp())
     {
-        currentDir = newDir;
+        currentDir = newDir.absolutePath();
         ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
     }
 }
