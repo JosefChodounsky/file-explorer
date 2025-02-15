@@ -13,22 +13,27 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class MainWindow;
+class mainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class mainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit mainWindow(QWidget *parent = nullptr);
+    ~mainWindow();
 
 private:
     void listDrives(QListWidget *listWidget);
     void setupFileListView();
-    QFileSystemModel fileModel;
-    Ui::MainWindow *ui;
+    QFileSystemModel *fileModel;
+    Ui::mainWindow *ui;
+
+private slots:
+    void on_btnCreateDir_clicked();
+    void on_listViewFiles_doubleClicked();
+    void on_btnGoUp_clicked();
 };
 #endif // MAINWINDOW_H
