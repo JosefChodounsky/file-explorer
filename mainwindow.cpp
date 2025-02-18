@@ -205,9 +205,10 @@ void mainWindow::paste ()
         try
         {
             foreach (const QString oldPath, clipboard)
-            {
+            {                
                 const QFileInfo info(oldPath);
                 QString name = info.fileName();
+                if (oldPath == currentDir + QDir::separator() + name) break;
                 if (QFile::exists(currentDir + QDir::separator() + name))
                 {
                     int response = conflict(currentDir + QDir::separator() + name);
@@ -332,7 +333,36 @@ void mainWindow::del (QString d)
 
 void mainWindow::properties ()
 {
-
+    QStringList list;
+    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())list.append(fileModel->filePath(index));
+    if (list.length() != 1) return;
+    else
+    {
+        QString path = list[0];
+        QFileInfo info(path);
+        if (info.exists())
+        {
+            QMimeDatabase database;
+            QMimeType mimeType = database.mimeTypeForFile(info);
+            QString timeCreated;
+            if (info.birthTime().isValid()) timeCreated = info.birthTime().toString(Qt::ISODate);
+            else timeCreated = "Unknown";
+            QString text = QString("Name: \t\t%1\n\nKind: \t\t%2\nLocation: \t\t%3\n\nCreated: \t\t%4\nModified: \t\t%5\nAccessed: \t\t%6\n\nPermissions: \t%7\n\nSize: \t\t%8")
+                               .arg(info.fileName(),
+                                mimeType.comment(),
+                                info.absolutePath(),
+                                timeCreated,
+                                info.lastModified().toString(Qt::ISODate),
+                                info.lastRead().toString(Qt::ISODate),
+                                permissions(info),
+                                QString::number(info.size()) + " Bytes");
+            QMessageBox msg;
+            msg.setWindowTitle("Properties");
+            msg.setText(text);
+            msg.setDefaultButton(QMessageBox::Close);
+            msg.exec();
+        }
+    }
 }
 
 bool mainWindow::pasteRecursively(QString source, QString destination)
@@ -345,7 +375,6 @@ bool mainWindow::pasteRecursively(QString source, QString destination)
         foreach (QString d, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
         {
             QString destinationPath = destination + QDir::separator() + d;
-            QDir dPath(destinationPath);
             dir.mkpath(destinationPath);
             if (!pasteRecursively(source + QDir::separator() + d, destinationPath)) success = false;
         }
@@ -386,4 +415,28 @@ int mainWindow::conflict(QString d)
         return 2;
     }
     else return 0;
+}
+
+QString mainWindow::permissions(QFileInfo &info)
+{
+    QString output = "";
+    if (info.permission(QFile::ReadOwner))output += "r";
+    else output += "-";
+    if (info.permission(QFile::WriteOwner))output += "w";
+    else output += "-";
+    if (info.permission(QFile::ExeOwner))output += "x";
+    else output += "-";
+    if (info.permission(QFile::ReadGroup))output += "r";
+    else output += "-";
+    if (info.permission(QFile::WriteGroup))output += "w";
+    else output += "-";
+    if (info.permission(QFile::ExeGroup))output += "x";
+    else output += "-";
+    if (info.permission(QFile::ReadOther))output += "r";
+    else output += "-";
+    if (info.permission(QFile::WriteOther))output += "w";
+    else output += "-";
+    if (info.permission(QFile::ExeOther))output += "x";
+    else output += "-";
+    return output;
 }

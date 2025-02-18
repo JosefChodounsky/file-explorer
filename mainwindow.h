@@ -16,6 +16,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QShortcut>
+#include <QMimeDatabase>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -43,6 +44,8 @@ private:
     void del(QString d);
     void properties();
     bool pasteRecursively(QString source, QString destination);
+    void showContextMenu(const QPoint &pos);
+    QString permissions(QFileInfo &info);
     int conflict(QString d);
     QFileSystemModel *fileModel;
     Ui::mainWindow *ui;
@@ -52,7 +55,5 @@ private slots:
     void on_listViewFiles_doubleClicked();
     void on_btnGoUp_clicked();
     void on_listWidgetDrives_doubleClicked();
-    //void keyPressEvent(QKeyEvent *e);
-    void showContextMenu(const QPoint &pos);
 };
 #endif // MAINWINDOW_H

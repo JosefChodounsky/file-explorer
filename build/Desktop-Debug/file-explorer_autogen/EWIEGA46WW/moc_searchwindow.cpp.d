@@ -1,6 +1,7 @@
 /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/EWIEGA46WW/moc_searchwindow.cpp: /home/josef/file-explorer/searchwindow.h \
   /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/moc_predefs.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QMimeDatabase \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QRect \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSize \
@@ -81,6 +82,8 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmath.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmetacontainer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmetatype.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmimedatabase.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmimetype.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qminmax.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnamespace.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnativeinterface.h \
