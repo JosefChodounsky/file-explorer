@@ -151,6 +151,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QAction \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QMouseEvent \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QShortcut \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QTransform \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qaction.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbitmap.h \
@@ -182,6 +183,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qrgba64.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen_platform.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qshortcut.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextcursor.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextdocument.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextformat.h \
@@ -195,6 +197,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvectornd.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qwindowdefs.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QHBoxLayout \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QInputDialog \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QLineEdit \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListView \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListWidget \
@@ -214,6 +217,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qframe.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qgridlayout.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qinputdialog.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlayout.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlayoutitem.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlineedit.h \

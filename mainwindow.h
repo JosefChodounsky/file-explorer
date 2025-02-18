@@ -13,8 +13,9 @@
 #include <QMouseEvent>
 #include <QAction>
 #include <QMenu>
-
+#include <QInputDialog>
 #include <QMessageBox>
+#include <QShortcut>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

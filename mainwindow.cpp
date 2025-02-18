@@ -12,6 +12,15 @@ mainWindow::mainWindow(QWidget *parent)
     setCentralWidget(centralWidget());
     ui->listViewFiles->setContextMenuPolicy(Qt::CustomContextMenu);
     connect (ui->listViewFiles, &QListView::customContextMenuRequested, this, &mainWindow::showContextMenu);
+    QShortcut *shortcutCopy = new QShortcut(QKeySequence::Copy, this);
+    QShortcut *shortcutCut = new QShortcut(QKeySequence::Cut, this);
+    QShortcut *shortcutPaste = new QShortcut(QKeySequence::Paste, this);
+    QShortcut *shortcutDelete = new QShortcut(QKeySequence::Delete, this);
+
+    connect(shortcutCopy, &QShortcut::activated, this, &mainWindow::copy);
+    connect(shortcutCut, &QShortcut::activated, this, &mainWindow::cut);
+    connect(shortcutPaste, &QShortcut::activated, this, &mainWindow::paste);
+    connect(shortcutDelete, &QShortcut::activated, this, &mainWindow::remove);
 }
 
 static QString currentDir = QDir::homePath();
@@ -98,9 +107,16 @@ void mainWindow::on_listViewFiles_doubleClicked()
     QString newDir = QDir::cleanPath(currentDir + QDir::separator() + itemText);
     if (QDir(newDir).exists())
     {
-        currentDir = newDir;
-        ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
-        ui->txtCurrentPath->setText(currentDir);
+        if (QFileInfo(newDir).isDir())
+        {
+            currentDir = newDir;
+            ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+            ui->txtCurrentPath->setText(currentDir);
+        }
+        else
+        {
+            open();
+        }
     }
 }
 
@@ -118,15 +134,6 @@ void mainWindow::on_listWidgetDrives_doubleClicked()
     }
 }
 
-/*/
-void MainWindow::keyPressEvent(QKeyEvent *e) {
-    if(e->type() == QKeyEvent::KeyPress) {
-        if(e->matches(QKeySequence::Copy)) {
-
-        }
-    }
-}
-/*/
 void mainWindow::showContextMenu(const QPoint &pos)
 {
     QModelIndex index = ui->listViewFiles->currentIndex();
@@ -173,8 +180,7 @@ void mainWindow::copy ()
 {
     clipboard.clear();
     QStringList list;
-    foreach(const QModelIndex &index,
-             ui->listViewFiles->selectionModel()->selectedIndexes())
+    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
         list.append(fileModel->filePath(index));
     foreach (QString item, list)
         clipboard.append(item);
@@ -185,8 +191,7 @@ void mainWindow::cut ()
 {
     clipboard.clear();
     QStringList list;
-    foreach(const QModelIndex &index,
-             ui->listViewFiles->selectionModel()->selectedIndexes())
+    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
         list.append(fileModel->filePath(index));
     foreach (QString item, list)
         clipboard.append(item);
@@ -199,9 +204,9 @@ void mainWindow::paste ()
     {
         try
         {
-            foreach (const QString oldname, clipboard)
+            foreach (const QString oldPath, clipboard)
             {
-                const QFileInfo info(oldname);
+                const QFileInfo info(oldPath);
                 QString name = info.fileName();
                 if (QFile::exists(currentDir + QDir::separator() + name))
                 {
@@ -230,13 +235,13 @@ void mainWindow::paste ()
                 {
                     QDir destDir;
                     destDir.mkpath(currentDir + QDir::separator() + name);
-                    pasteRecursively(oldname, currentDir + QDir::separator() + name);
+                    pasteRecursively(oldPath, currentDir + QDir::separator() + name);
                 }
                 else
                 {
-                    if (!QFile::copy(oldname, currentDir + QDir::separator() + name))throw std::runtime_error("Error in copying of a file.");
+                    if (!QFile::copy(oldPath, currentDir + QDir::separator() + name))throw std::runtime_error("Error in copying of a file.");
                 }
-                if (mv) del(oldname);
+                if (mv) del(oldPath);
             }
         }
         catch (std::exception ex)
@@ -249,7 +254,26 @@ void mainWindow::paste ()
 
 void mainWindow::rename ()
 {
-
+    try
+    {
+        foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
+        {
+            bool ok;
+            QString oldPath = fileModel->filePath(index);
+            const QFileInfo info(oldPath);
+            QString name = info.fileName();
+            QString newName = QInputDialog::getText(this, "Rename file", "Enter new name for " + name, QLineEdit::Normal, name, &ok);
+            if (ok && !newName.isEmpty())
+            {
+                QFile file(oldPath);
+                file.rename(currentDir + QDir::separator() + newName);
+            }
+        }
+    }
+    catch (std::exception ex)
+    {
+        QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
+    }
 }
 
 void mainWindow::remove ()
@@ -322,31 +346,6 @@ bool mainWindow::pasteRecursively(QString source, QString destination)
         {
             QString destinationPath = destination + QDir::separator() + d;
             QDir dPath(destinationPath);
-            if (dPath.exists())
-            {
-                /*/
-                int response = conflict(destinationPath);
-                if (response == 0) break;
-                if (response == 1) del(currentDir + QDir::separator() + name);
-                if (response == 2)
-                {
-                    int i = 1;
-                    while (true)
-                    {
-                        QDir dir(currentDir + QDir::separator() + name);
-                        if (!dir.exists(name))
-                        {
-                            name += QString(" (%1)").arg(i);
-                            break;
-                        }
-                        else
-                        {
-                            i++;
-                        }
-                    }
-                }
-                /*/
-            }
             dir.mkpath(destinationPath);
             if (!pasteRecursively(source + QDir::separator() + d, destinationPath)) success = false;
         }
