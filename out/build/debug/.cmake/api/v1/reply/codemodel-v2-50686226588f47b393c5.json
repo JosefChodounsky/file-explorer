@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-32f5d4bac834d5622261.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "file-explorer",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "file-explorer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-file-explorer-Debug-ddc5f33c6fa3a326cbe0.json",
+					"name" : "file-explorer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "file-explorer_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-file-explorer_autogen-Debug-b87bac8a82c96cab9969.json",
+					"name" : "file-explorer_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "file-explorer_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-file-explorer_autogen_timestamp_deps-Debug-15542e2380c7667e97b6.json",
+					"name" : "file-explorer_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/file-explorer/out/build/debug",
+		"source" : "E:/file-explorer"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

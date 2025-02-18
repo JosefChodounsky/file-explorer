@@ -347,7 +347,7 @@ void mainWindow::properties ()
             QString timeCreated;
             if (info.birthTime().isValid()) timeCreated = info.birthTime().toString(Qt::ISODate);
             else timeCreated = "Unknown";
-            QString text = QString("Name: \t\t%1\n\nKind: \t\t%2\nLocation: \t\t%3\n\nCreated: \t\t%4\nModified: \t\t%5\nAccessed: \t\t%6\n\nPermissions: \t%7\n\nSize: \t\t%8")
+            QString text = QString("Name: \t%1\n\nKind: \t%2\nLocation: \t%3\n\nCreated: \t%4\nModified: \t%5\nAccessed: \t%6\n\nPermissions: \t%7\n\nSize: \t%8")
                                .arg(info.fileName(),
                                 mimeType.comment(),
                                 info.absolutePath(),
