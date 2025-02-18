@@ -1,4 +1,9 @@
 file-explorer_autogen/timestamp: \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QRect \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSize \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSizeF \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QStorageInfo \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20functional.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20iterator.h \
@@ -32,13 +37,19 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcontainerinfo.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcontainertools_impl.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcontiguouscache.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcoreapplication.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcoreapplication_platform.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcoreevent.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdarwinhelpers.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdatastream.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdatetime.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdeadlinetimer.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdebug.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdir.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdirlisting.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qelapsedtimer.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qendian.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qeventloop.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qexceptionhandling.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qfile.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qfiledevice.h \
@@ -71,6 +82,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmetatype.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qminmax.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnamespace.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnativeinterface.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnumeric.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qobject.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qobject_impl.h \
@@ -135,28 +147,40 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qversiontagging.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qxptype_traits.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qyieldcpu.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QAction \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QMouseEvent \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QTransform \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qaction.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbitmap.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbrush.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcolor.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcursor.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qevent.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qeventpoint.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfilesystemmodel.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfont.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfontinfo.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfontmetrics.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qguiapplication.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qguiapplication_platform.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qicon.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qimage.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qinputdevice.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qinputmethod.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qkeysequence.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpaintdevice.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpalette.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpen.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpixelformat.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpixmap.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpointingdevice.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpolygon.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qregion.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qrgb.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qrgba64.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen_platform.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextcursor.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextdocument.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextformat.h \
@@ -166,12 +190,16 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtguiglobal.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtransform.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvalidator.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvector2d.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvectornd.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qwindowdefs.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QHBoxLayout \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QLineEdit \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListView \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListWidget \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMainWindow \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMenu \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMessageBox \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QPushButton \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QVBoxLayout \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractbutton.h \
@@ -181,6 +209,8 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractslider.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qboxlayout.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qdialog.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qframe.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qgridlayout.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlayout.h \
@@ -189,6 +219,8 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlistview.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlistwidget.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qmainwindow.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qmenu.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qmessagebox.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qpushbutton.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qrubberband.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qsizepolicy.h \
@@ -444,80 +476,23 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeCXXCompiler.cmake.in \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeCXXInformation.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeCompilerIdDetection.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeDetermineCompileFeatures.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeDetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeFindBinUtils.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeGenericSystem.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeNinjaFindMake.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeParseImplicitIncludeInfo.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeParseImplicitLinkInfo.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeParseLibraryArchitecture.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeSystem.cmake.in \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeTestCompilerCommon.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CheckCXXSourceCompiles.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CheckIncludeFileCXX.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CheckLibraryExists.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/ADSP-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Borland-DetermineCompiler.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Clang-CXX.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Clang-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Clang-FindBinUtils.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Clang.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Cray-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/CrayClang-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/GHS-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/GNU.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/IAR-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Intel-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/MSVC-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/OrangeC-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/PGI-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/PathScale-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/SCO-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/TI-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/TIClang-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Tasking-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/Watcom-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FeatureSummary.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindOpenGL.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake \
@@ -526,14 +501,11 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindThreads.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindVulkan.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/GNUInstallDirs.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Internal/FeatureTesting.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/MacroAddFileDependencies.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/Linux-Clang-CXX.cmake \
-	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/Linux-Determine-CXX.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/Linux-GNU-CXX.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/Linux-GNU.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake \
@@ -547,6 +519,8 @@ file-explorer_autogen/timestamp: \
 	/home/josef/file-explorer/main.cpp \
 	/home/josef/file-explorer/mainwindow.cpp \
 	/home/josef/file-explorer/mainwindow.h \
+	/home/josef/file-explorer/searchwindow.cpp \
+	/home/josef/file-explorer/searchwindow.h \
 	/usr/include/alloca.h \
 	/usr/include/asm-generic/errno-base.h \
 	/usr/include/asm-generic/errno.h \

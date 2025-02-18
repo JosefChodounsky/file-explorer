@@ -10,6 +10,11 @@
 #include <QHBoxLayout>
 #include <QStorageInfo>
 #include <QFileSystemModel>
+#include <QMouseEvent>
+#include <QAction>
+#include <QMenu>
+
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +33,16 @@ public:
 private:
     void listDrives(QListWidget *listWidget);
     void setupFileListView();
+    void open();
+    void copy();
+    void cut();
+    void paste();
+    void rename();
+    void remove();
+    void del(QString d);
+    void properties();
+    bool pasteRecursively(QString source, QString destination);
+    int conflict(QString d);
     QFileSystemModel *fileModel;
     Ui::mainWindow *ui;
 
@@ -35,5 +50,8 @@ private slots:
     void on_btnCreateDir_clicked();
     void on_listViewFiles_doubleClicked();
     void on_btnGoUp_clicked();
+    void on_listWidgetDrives_doubleClicked();
+    //void keyPressEvent(QKeyEvent *e);
+    void showContextMenu(const QPoint &pos);
 };
 #endif // MAINWINDOW_H

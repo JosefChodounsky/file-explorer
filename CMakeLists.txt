@@ -23,6 +23,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(file-explorer
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        searchwindow.h searchwindow.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET file-explorer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

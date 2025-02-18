@@ -91,7 +91,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="topTxtLayout" stretch="5,2">
+         <layout class="QHBoxLayout" name="topTxtLayout" stretch="5,0">
           <item>
            <widget class="QLineEdit" name="txtCurrentPath">
             <property name="minimumSize">
@@ -100,18 +100,27 @@
               <height>40</height>
              </size>
             </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="txtSearch">
+           <widget class="QPushButton" name="btnSearch">
             <property name="minimumSize">
              <size>
-              <width>0</width>
+              <width>40</width>
               <height>40</height>
              </size>
             </property>
-            <property name="placeholderText">
-             <string>Search...</string>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>🔎</string>
             </property>
            </widget>
           </item>
@@ -125,7 +134,20 @@
          <widget class="QListWidget" name="listWidgetDrives"/>
         </item>
         <item>
-         <widget class="QListView" name="listViewFiles"/>
+         <widget class="QListView" name="listViewFiles">
+          <property name="dragEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="dragDropMode">
+           <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
+          </property>
+          <property name="defaultDropAction">
+           <enum>Qt::DropAction::MoveAction</enum>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

@@ -1,4 +1,4 @@
-/home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/josef/file-explorer/mainwindow.h \
+/home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/EWIEGA46WW/moc_searchwindow.cpp: /home/josef/file-explorer/searchwindow.h \
   /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/moc_predefs.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
@@ -234,6 +234,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qtwidgetsexports.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qwidget.h \
+  /home/josef/file-explorer/mainwindow.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \

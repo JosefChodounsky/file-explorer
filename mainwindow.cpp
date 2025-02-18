@@ -10,9 +10,13 @@ mainWindow::mainWindow(QWidget *parent)
     listDrives(ui->listWidgetDrives);
     setupFileListView();
     setCentralWidget(centralWidget());
+    ui->listViewFiles->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect (ui->listViewFiles, &QListView::customContextMenuRequested, this, &mainWindow::showContextMenu);
 }
 
 static QString currentDir = QDir::homePath();
+static QStringList clipboard;
+static bool mv = false;
 
 mainWindow::~mainWindow()
 {
@@ -43,6 +47,7 @@ void mainWindow::setupFileListView()
     fileModel->setRootPath(currentDir);
     ui->listViewFiles->setModel(fileModel);
     ui->listViewFiles->setRootIndex(fileModel->index(QDir::homePath()));
+    ui->txtCurrentPath->setText(currentDir);
 }
 
 void mainWindow::on_btnCreateDir_clicked()
@@ -50,20 +55,27 @@ void mainWindow::on_btnCreateDir_clicked()
     int i = 0;
     while (true)
     {
-        QString newFolderPath = QDir::cleanPath(currentDir + QDir::separator() + "New Folder");;
-        if (i != 0)
+        try
         {
-            newFolderPath += QString(" (%1)").arg(i);
+            QString newFolderPath = QDir::cleanPath(currentDir + QDir::separator() + "New Folder");;
+            if (i != 0)
+            {
+                newFolderPath += QString(" (%1)").arg(i);
+            }
+            QDir dir = newFolderPath;
+            if (!dir.exists(newFolderPath))
+            {
+                dir.mkdir(newFolderPath);
+                break;
+            }
+            else
+            {
+                i++;
+            }
         }
-        QDir dir = newFolderPath;
-        if (!dir.exists(newFolderPath))
+        catch (std::exception ex)
         {
-            dir.mkdir(newFolderPath);
-            break;
-        }
-        else
-        {
-            i++;
+            QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
         }
     }
 }
@@ -75,6 +87,7 @@ void mainWindow::on_btnGoUp_clicked()
     {
         currentDir = newDir.absolutePath();
         ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+        ui->txtCurrentPath->setText(currentDir);
     }
 }
 
@@ -87,6 +100,291 @@ void mainWindow::on_listViewFiles_doubleClicked()
     {
         currentDir = newDir;
         ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+        ui->txtCurrentPath->setText(currentDir);
     }
 }
 
+void mainWindow::on_listWidgetDrives_doubleClicked()
+{
+    QModelIndex index = ui->listWidgetDrives->currentIndex();
+    QString itemText = index.data(Qt::DisplayRole).toString();
+    itemText = itemText.left(itemText.lastIndexOf(" ("));
+    QString newDir = QDir::cleanPath(itemText);
+    if (QDir(newDir).exists())
+    {
+        currentDir = newDir;
+        ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+        ui->txtCurrentPath->setText(currentDir);
+    }
+}
+
+/*/
+void MainWindow::keyPressEvent(QKeyEvent *e) {
+    if(e->type() == QKeyEvent::KeyPress) {
+        if(e->matches(QKeySequence::Copy)) {
+
+        }
+    }
+}
+/*/
+void mainWindow::showContextMenu(const QPoint &pos)
+{
+    QModelIndex index = ui->listViewFiles->currentIndex();
+    if (!index.isValid()) return;
+    QMenu contextMenu(this);
+
+    QAction *openAction = new QAction("Open", this);
+    QAction *copyAction = new QAction("Copy", this);
+    QAction *cutAction = new QAction("Cut", this);
+    QAction *renameAction = new QAction("Rename", this);
+    QAction *deleteAction = new QAction("Delete", this);
+    QAction *propertiesAction = new QAction("Properties", this);
+
+    connect (openAction, &QAction::triggered, this, &mainWindow::open);
+    connect (copyAction, &QAction::triggered, this, &mainWindow::copy);
+    connect (cutAction, &QAction::triggered, this, &mainWindow::cut);
+    connect (renameAction, &QAction::triggered, this, &mainWindow::rename);
+    connect (deleteAction, &QAction::triggered, this, &mainWindow::remove);
+    connect (propertiesAction, &QAction::triggered, this, &mainWindow::properties);
+
+    contextMenu.addAction(openAction);
+    contextMenu.addAction(copyAction);
+    contextMenu.addAction(cutAction);
+    if (!clipboard.isEmpty())
+    {
+        QAction *pasteAction = new QAction("Paste", this);
+        contextMenu.addAction(pasteAction);
+        connect (pasteAction, &QAction::triggered, this, &mainWindow::paste);
+    }
+    contextMenu.addAction(renameAction);
+    contextMenu.addAction(deleteAction);
+    contextMenu.addAction(propertiesAction);
+
+    contextMenu.exec(ui->listViewFiles->viewport()->mapToGlobal(pos));
+}
+
+
+void mainWindow::open ()
+{
+
+}
+
+void mainWindow::copy ()
+{
+    clipboard.clear();
+    QStringList list;
+    foreach(const QModelIndex &index,
+             ui->listViewFiles->selectionModel()->selectedIndexes())
+        list.append(fileModel->filePath(index));
+    foreach (QString item, list)
+        clipboard.append(item);
+    mv = false;
+}
+
+void mainWindow::cut ()
+{
+    clipboard.clear();
+    QStringList list;
+    foreach(const QModelIndex &index,
+             ui->listViewFiles->selectionModel()->selectedIndexes())
+        list.append(fileModel->filePath(index));
+    foreach (QString item, list)
+        clipboard.append(item);
+    mv = true;
+}
+
+void mainWindow::paste ()
+{
+    if (!clipboard.isEmpty())
+    {
+        try
+        {
+            foreach (const QString oldname, clipboard)
+            {
+                const QFileInfo info(oldname);
+                QString name = info.fileName();
+                if (QFile::exists(currentDir + QDir::separator() + name))
+                {
+                    int response = conflict(currentDir + QDir::separator() + name);
+                    if (response == 0) break;
+                    if (response == 1) del(currentDir + QDir::separator() + name);
+                    if (response == 2)
+                    {
+                        int i = 1;
+                        while (true)
+                        {
+                            QDir dir(currentDir + QDir::separator() + name);
+                            if (!dir.exists(name))
+                            {
+                                name += QString(" (%1)").arg(i);
+                                break;
+                            }
+                            else
+                            {
+                                i++;
+                            }
+                        }
+                    }
+                }
+                if (info.isDir())
+                {
+                    QDir destDir;
+                    destDir.mkpath(currentDir + QDir::separator() + name);
+                    pasteRecursively(oldname, currentDir + QDir::separator() + name);
+                }
+                else
+                {
+                    if (!QFile::copy(oldname, currentDir + QDir::separator() + name))throw std::runtime_error("Error in copying of a file.");
+                }
+                if (mv) del(oldname);
+            }
+        }
+        catch (std::exception ex)
+        {
+            QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
+        }
+    }
+    clipboard.clear();
+}
+
+void mainWindow::rename ()
+{
+
+}
+
+void mainWindow::remove ()
+{
+    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
+    {
+        QString itemPath = fileModel->filePath(index);
+        const QFileInfo info(itemPath);
+        const QString name = info.fileName();
+
+        try
+        {
+            if (info.isDir())
+            {
+                if (QMessageBox::warning(nullptr, "Warning", "Do you really want to remove " + name + "?", QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok)
+                {
+                    QDir dir(itemPath);
+                    dir.removeRecursively();
+                }
+                else continue;
+            }
+            else
+            {
+                QFile file(itemPath);
+                file.remove();
+            }
+        }
+        catch (std::exception ex)
+        {
+            QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
+        }
+    }
+}
+
+void mainWindow::del (QString d)
+{
+    const QFileInfo info(d);
+    try
+    {
+        if (info.isFile())
+        {            
+            QFile file(d);
+            if (file.exists()) file.remove();
+        }
+        else if (info.isDir())
+        {            
+            QDir dir(d);
+            if (dir.exists()) dir.removeRecursively();
+        }
+    }
+    catch (std::exception ex)
+    {
+        QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission for " + d + ". ", QMessageBox::Ok);
+    }
+}
+
+void mainWindow::properties ()
+{
+
+}
+
+bool mainWindow::pasteRecursively(QString source, QString destination)
+{
+    bool success = true;
+    try
+    {
+        QDir dir(source);
+        if (!dir.exists()) return false;
+        foreach (QString d, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+        {
+            QString destinationPath = destination + QDir::separator() + d;
+            QDir dPath(destinationPath);
+            if (dPath.exists())
+            {
+                /*/
+                int response = conflict(destinationPath);
+                if (response == 0) break;
+                if (response == 1) del(currentDir + QDir::separator() + name);
+                if (response == 2)
+                {
+                    int i = 1;
+                    while (true)
+                    {
+                        QDir dir(currentDir + QDir::separator() + name);
+                        if (!dir.exists(name))
+                        {
+                            name += QString(" (%1)").arg(i);
+                            break;
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                    }
+                }
+                /*/
+            }
+            dir.mkpath(destinationPath);
+            if (!pasteRecursively(source + QDir::separator() + d, destinationPath)) success = false;
+        }
+        foreach (QString f, dir.entryList(QDir::Files))
+        {
+            if (!QFile::copy(source + QDir::separator() + f, destination + QDir::separator() + f)) success = false;
+        }
+    }
+    catch (std::exception ex)
+    {
+        QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
+    }
+    return success;
+}
+
+int mainWindow::conflict(QString d)
+{
+    QString type;
+    const QFileInfo info(d);
+    const QString name = info.fileName();
+    if (info.isDir()) type = "Directory";
+    else type = "File";
+    QMessageBox msg;
+    msg.setIcon(QMessageBox::Warning);
+    msg.setWindowTitle("File Conflict");
+    msg.setText(type + " " + d + " already exists. ");
+    msg.setStandardButtons(QMessageBox::Discard | QMessageBox::Ignore | QMessageBox::Retry);
+    msg.button(QMessageBox::Discard)->setText("Overwrite");
+    msg.button(QMessageBox::Ignore)->setText("Rename");
+    msg.button(QMessageBox::Retry)->setText("Skip");
+    int input = msg.exec();
+    if (input == QMessageBox::Discard)
+    {
+        return 1;
+    }
+    else if  (input == QMessageBox::Ignore)
+    {
+        return 2;
+    }
+    else return 0;
+}
