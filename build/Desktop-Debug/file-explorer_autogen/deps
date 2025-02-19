@@ -1,4 +1,5 @@
 file-explorer_autogen/timestamp: \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QFileInfo \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QMimeDatabase \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
@@ -151,6 +152,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qxptype_traits.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qyieldcpu.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QAction \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QDesktopServices \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QMouseEvent \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QShortcut \
@@ -160,6 +162,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbrush.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcolor.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcursor.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qdesktopservices.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qevent.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qeventpoint.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfilesystemmodel.h \
@@ -176,6 +179,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpaintdevice.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpalette.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpen.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpicture.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpixelformat.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpixmap.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpointingdevice.h \
@@ -198,8 +202,10 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvector2d.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvectornd.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qwindowdefs.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QDialog \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QHBoxLayout \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QInputDialog \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QLabel \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QLineEdit \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListView \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListWidget \
@@ -220,6 +226,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qframe.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qgridlayout.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qinputdialog.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlabel.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlayout.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlayoutitem.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlineedit.h \
@@ -526,6 +533,8 @@ file-explorer_autogen/timestamp: \
 	/home/josef/file-explorer/main.cpp \
 	/home/josef/file-explorer/mainwindow.cpp \
 	/home/josef/file-explorer/mainwindow.h \
+	/home/josef/file-explorer/propertiesdialog.cpp \
+	/home/josef/file-explorer/propertiesdialog.h \
 	/home/josef/file-explorer/searchwindow.cpp \
 	/home/josef/file-explorer/searchwindow.h \
 	/usr/include/alloca.h \

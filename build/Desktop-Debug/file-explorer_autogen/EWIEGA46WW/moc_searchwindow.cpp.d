@@ -1,7 +1,6 @@
 /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/EWIEGA46WW/moc_searchwindow.cpp: /home/josef/file-explorer/searchwindow.h \
   /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/moc_predefs.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QMimeDatabase \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QRect \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSize \
@@ -82,8 +81,6 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmath.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmetacontainer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmetatype.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmimedatabase.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmimetype.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qminmax.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnamespace.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnativeinterface.h \
@@ -152,6 +149,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qxptype_traits.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qyieldcpu.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QAction \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QDesktopServices \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QMouseEvent \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QShortcut \
@@ -161,6 +159,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbrush.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcolor.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcursor.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qdesktopservices.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qevent.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qeventpoint.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfilesystemmodel.h \

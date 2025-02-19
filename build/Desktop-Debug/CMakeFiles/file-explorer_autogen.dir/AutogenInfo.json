@@ -412,6 +412,12 @@
 			null
 		],
 		[
+			"/home/josef/file-explorer/propertiesdialog.h",
+			"MU",
+			"EWIEGA46WW/moc_propertiesdialog.cpp",
+			null
+		],
+		[
 			"/home/josef/file-explorer/searchwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_searchwindow.cpp",
@@ -479,6 +485,7 @@
 	[
 		[ "/home/josef/file-explorer/main.cpp", "MU", null ],
 		[ "/home/josef/file-explorer/mainwindow.cpp", "MU", null ],
+		[ "/home/josef/file-explorer/propertiesdialog.cpp", "MU", null ],
 		[ "/home/josef/file-explorer/searchwindow.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

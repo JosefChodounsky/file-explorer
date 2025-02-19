@@ -16,7 +16,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QShortcut>
-#include <QMimeDatabase>
+#include <QDesktopServices>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -46,9 +46,12 @@ private:
     bool pasteRecursively(QString source, QString destination);
     void showContextMenu(const QPoint &pos);
     QString permissions(QFileInfo &info);
-    int conflict(QString d);
+    int conflict(QString &d);
     QFileSystemModel *fileModel;
     Ui::mainWindow *ui;
+    QString currentDir = QDir::homePath();
+    QStringList clipboard;
+    bool mv = false;
 
 private slots:
     void on_btnCreateDir_clicked();

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "propertiesdialog.h"
 
 mainWindow::mainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,10 +23,6 @@ mainWindow::mainWindow(QWidget *parent)
     connect(shortcutPaste, &QShortcut::activated, this, &mainWindow::paste);
     connect(shortcutDelete, &QShortcut::activated, this, &mainWindow::remove);
 }
-
-static QString currentDir = QDir::homePath();
-static QStringList clipboard;
-static bool mv = false;
 
 mainWindow::~mainWindow()
 {
@@ -66,15 +63,15 @@ void mainWindow::on_btnCreateDir_clicked()
     {
         try
         {
-            QString newFolderPath = QDir::cleanPath(currentDir + QDir::separator() + "New Folder");;
+            QString newPath = QDir::cleanPath(currentDir + QDir::separator() + "New Folder");;
             if (i != 0)
             {
-                newFolderPath += QString(" (%1)").arg(i);
+                newPath += QString(" (%1)").arg(i);
             }
-            QDir dir = newFolderPath;
-            if (!dir.exists(newFolderPath))
+            QDir dir = newPath;
+            if (!dir.exists(newPath))
             {
-                dir.mkdir(newFolderPath);
+                dir.mkdir(newPath);
                 break;
             }
             else
@@ -105,7 +102,7 @@ void mainWindow::on_listViewFiles_doubleClicked()
     QModelIndex index = ui->listViewFiles->currentIndex();
     QString itemText = index.data(Qt::DisplayRole).toString();
     QString newDir = QDir::cleanPath(currentDir + QDir::separator() + itemText);
-    if (QDir(newDir).exists())
+    if (QFileInfo::exists(newDir))
     {
         if (QFileInfo(newDir).isDir())
         {
@@ -115,7 +112,7 @@ void mainWindow::on_listViewFiles_doubleClicked()
         }
         else
         {
-            open();
+            mainWindow::open();
         }
     }
 }
@@ -173,7 +170,18 @@ void mainWindow::showContextMenu(const QPoint &pos)
 
 void mainWindow::open ()
 {
-
+    QModelIndex index = ui->listViewFiles->currentIndex();
+    QString itemText = index.data(Qt::DisplayRole).toString();
+    QString path = QDir::cleanPath(currentDir + QDir::separator() + itemText);
+    QFileInfo info(path);
+    if (info.isDir())
+    {
+        on_listViewFiles_doubleClicked();
+    }
+    else
+    {
+        if (!QDesktopServices::openUrl(QUrl::fromLocalFile(path))) QMessageBox::warning(nullptr, "Error", "Operation unsuccessful, no app that can open selected file. ", QMessageBox::Ok);
+    }
 }
 
 void mainWindow::copy ()
@@ -208,19 +216,21 @@ void mainWindow::paste ()
             {                
                 const QFileInfo info(oldPath);
                 QString name = info.fileName();
-                if (oldPath == currentDir + QDir::separator() + name) break;
-                if (QFile::exists(currentDir + QDir::separator() + name))
+                QString newPath = currentDir + QDir::separator() + name;
+                if (QFile::exists(newPath))
                 {
-                    int response = conflict(currentDir + QDir::separator() + name);
+                    int response;
+                    if (oldPath == newPath) response = 2;
+                    else response = conflict(newPath);
                     if (response == 0) break;
-                    if (response == 1) del(currentDir + QDir::separator() + name);
+                    if (response == 1) del(newPath);
                     if (response == 2)
                     {
                         int i = 1;
                         while (true)
                         {
-                            QDir dir(currentDir + QDir::separator() + name);
-                            if (!dir.exists(name))
+                            newPath = currentDir + QDir::separator() + name + " (" + QString::number(i) + ")";
+                            if (!QFileInfo::exists(newPath))
                             {
                                 name += QString(" (%1)").arg(i);
                                 break;
@@ -235,12 +245,12 @@ void mainWindow::paste ()
                 if (info.isDir())
                 {
                     QDir destDir;
-                    destDir.mkpath(currentDir + QDir::separator() + name);
-                    pasteRecursively(oldPath, currentDir + QDir::separator() + name);
+                    destDir.mkpath(newPath);
+                    pasteRecursively(oldPath, newPath);
                 }
                 else
                 {
-                    if (!QFile::copy(oldPath, currentDir + QDir::separator() + name))throw std::runtime_error("Error in copying of a file.");
+                    if (!QFile::copy(oldPath, newPath))throw std::runtime_error("Error in copying of a file.");
                 }
                 if (mv) del(oldPath);
             }
@@ -342,25 +352,8 @@ void mainWindow::properties ()
         QFileInfo info(path);
         if (info.exists())
         {
-            QMimeDatabase database;
-            QMimeType mimeType = database.mimeTypeForFile(info);
-            QString timeCreated;
-            if (info.birthTime().isValid()) timeCreated = info.birthTime().toString(Qt::ISODate);
-            else timeCreated = "Unknown";
-            QString text = QString("Name: \t%1\n\nKind: \t%2\nLocation: \t%3\n\nCreated: \t%4\nModified: \t%5\nAccessed: \t%6\n\nPermissions: \t%7\n\nSize: \t%8")
-                               .arg(info.fileName(),
-                                mimeType.comment(),
-                                info.absolutePath(),
-                                timeCreated,
-                                info.lastModified().toString(Qt::ISODate),
-                                info.lastRead().toString(Qt::ISODate),
-                                permissions(info),
-                                QString::number(info.size()) + " Bytes");
-            QMessageBox msg;
-            msg.setWindowTitle("Properties");
-            msg.setText(text);
-            msg.setDefaultButton(QMessageBox::Close);
-            msg.exec();
+            propertiesDialog dialog(path, this);
+            dialog.exec();
         }
     }
 }
@@ -390,7 +383,7 @@ bool mainWindow::pasteRecursively(QString source, QString destination)
     return success;
 }
 
-int mainWindow::conflict(QString d)
+int mainWindow::conflict(QString &d)
 {
     QString type;
     const QFileInfo info(d);
@@ -417,26 +410,4 @@ int mainWindow::conflict(QString d)
     else return 0;
 }
 
-QString mainWindow::permissions(QFileInfo &info)
-{
-    QString output = "";
-    if (info.permission(QFile::ReadOwner))output += "r";
-    else output += "-";
-    if (info.permission(QFile::WriteOwner))output += "w";
-    else output += "-";
-    if (info.permission(QFile::ExeOwner))output += "x";
-    else output += "-";
-    if (info.permission(QFile::ReadGroup))output += "r";
-    else output += "-";
-    if (info.permission(QFile::WriteGroup))output += "w";
-    else output += "-";
-    if (info.permission(QFile::ExeGroup))output += "x";
-    else output += "-";
-    if (info.permission(QFile::ReadOther))output += "r";
-    else output += "-";
-    if (info.permission(QFile::WriteOther))output += "w";
-    else output += "-";
-    if (info.permission(QFile::ExeOther))output += "x";
-    else output += "-";
-    return output;
-}
+
