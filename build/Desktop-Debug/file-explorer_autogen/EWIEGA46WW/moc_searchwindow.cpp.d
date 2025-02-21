@@ -1,11 +1,7 @@
 /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/EWIEGA46WW/moc_searchwindow.cpp: /home/josef/file-explorer/searchwindow.h \
   /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/moc_predefs.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QRect \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSize \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSizeF \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QStorageInfo \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QDir \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QDirIterator \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20functional.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20iterator.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20memory.h \
@@ -38,19 +34,14 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcontainerinfo.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcontainertools_impl.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcontiguouscache.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcoreapplication.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcoreapplication_platform.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qcoreevent.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdarwinhelpers.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdatastream.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdatetime.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdeadlinetimer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdebug.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdir.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdiriterator.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdirlisting.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qelapsedtimer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qendian.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qeventloop.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qexceptionhandling.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qfile.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qfiledevice.h \
@@ -83,7 +74,6 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qmetatype.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qminmax.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnamespace.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnativeinterface.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qnumeric.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qobject.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qobject_impl.h \
@@ -105,7 +95,6 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qsize.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qspan.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qstorageinfo.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qstring.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qstringalgorithms.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qstringbuilder.h \
@@ -148,44 +137,27 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qversiontagging.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qxptype_traits.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qyieldcpu.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QAction \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QDesktopServices \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QMouseEvent \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QShortcut \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QTransform \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qaction.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbitmap.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbrush.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcolor.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qcursor.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qdesktopservices.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qevent.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qeventpoint.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfilesystemmodel.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfont.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfontinfo.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qfontmetrics.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qguiapplication.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qguiapplication_platform.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qicon.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qimage.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qinputdevice.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qinputmethod.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qkeysequence.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpaintdevice.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpalette.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpen.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpicture.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpixelformat.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpixmap.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpointingdevice.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qpolygon.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qregion.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qrgb.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qrgba64.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen_platform.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qshortcut.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextcursor.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextdocument.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextformat.h \
@@ -195,20 +167,13 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtguiglobal.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtransform.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvalidator.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvector2d.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qvectornd.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qwindowdefs.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QHBoxLayout \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QInputDialog \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QDialog \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QLabel \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QLineEdit \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListView \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QListWidget \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMainWindow \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMenu \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMessageBox \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QPushButton \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QVBoxLayout \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractbutton.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractitemview.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
@@ -219,16 +184,13 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qframe.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qgridlayout.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qinputdialog.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlabel.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlayout.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlayoutitem.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlineedit.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlistview.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qlistwidget.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qmainwindow.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qmenu.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qmessagebox.h \
-  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qpushbutton.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qrubberband.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qsizepolicy.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qslider.h \
@@ -240,7 +202,6 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qtwidgetsexports.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qwidget.h \
-  /home/josef/file-explorer/mainwindow.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \

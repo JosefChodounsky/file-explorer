@@ -1,5 +1,6 @@
 /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/josef/file-explorer/mainwindow.h \
   /home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/moc_predefs.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QDirIterator \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QRect \
@@ -47,6 +48,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdeadlinetimer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdebug.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdir.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdiriterator.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdirlisting.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qelapsedtimer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qendian.h \
@@ -153,6 +155,8 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QMouseEvent \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QShortcut \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QStandardItem \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QStandardItemModel \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/QTransform \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qaction.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbitmap.h \
@@ -186,6 +190,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen_platform.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qshortcut.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qstandarditemmodel.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextcursor.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextdocument.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextformat.h \

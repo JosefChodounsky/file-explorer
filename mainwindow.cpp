@@ -22,6 +22,10 @@ mainWindow::mainWindow(QWidget *parent)
     connect(shortcutCut, &QShortcut::activated, this, &mainWindow::cut);
     connect(shortcutPaste, &QShortcut::activated, this, &mainWindow::paste);
     connect(shortcutDelete, &QShortcut::activated, this, &mainWindow::remove);
+
+    connect(ui->searchTxt, &QLineEdit::returnPressed, this, [this]() {
+        performSearch(ui->searchTxt->text());
+    });
 }
 
 mainWindow::~mainWindow()
@@ -92,8 +96,10 @@ void mainWindow::on_btnGoUp_clicked()
     if (newDir.cdUp())
     {
         currentDir = newDir.absolutePath();
+        ui->searchTxt->clear();
+        performSearch(ui->searchTxt->text());
         ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
-        ui->txtCurrentPath->setText(currentDir);
+        ui->txtCurrentPath->setText(currentDir);        
     }
 }
 
@@ -131,6 +137,83 @@ void mainWindow::on_listWidgetDrives_doubleClicked()
     }
 }
 
+QString mainWindow::getFilePath(const QModelIndex &index)
+{
+    if (!isQFileSystemModel())
+    {
+        return index.data(Qt::UserRole).toString();
+    }
+    else
+    {
+        return fileModel->filePath(index);
+    }
+}
+
+bool mainWindow::isQFileSystemModel()
+{
+    if (QStandardItemModel* standardModel = qobject_cast<QStandardItemModel*>(ui->listViewFiles->model()))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+void mainWindow::performSearch(const QString& keyword)
+{
+    if (keyword.isEmpty())
+    {
+        resetFileView();
+        return;
+    }
+
+    QFileInfoList results = findFiles(currentDir, keyword);
+
+    QStandardItemModel* searchModel = new QStandardItemModel(this);
+
+    foreach (const QFileInfo& fileInfo, results)
+    {
+        QStandardItem* item = new QStandardItem;
+        item->setText(fileInfo.fileName());
+        item->setData(fileInfo.filePath(), Qt::UserRole);
+
+        if (fileInfo.isDir())
+        {
+            item->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
+        }
+        else
+        {
+            item->setIcon(style()->standardIcon(QStyle::SP_FileIcon));
+        }
+        searchModel->appendRow(item);
+    }
+    ui->listViewFiles->setModel(searchModel);
+}
+
+void mainWindow::resetFileView()
+{
+    ui->listViewFiles->setModel(fileModel);
+    ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+}
+
+QFileInfoList mainWindow::findFiles(const QString& startDir, const QString& keyword)
+{
+    QFileInfoList results;
+    QDirIterator it(startDir, QDir::AllEntries | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
+    while (it.hasNext())
+    {
+        it.next();
+        QFileInfo fileInfo = it.fileInfo();
+        if (fileInfo.fileName().contains(keyword, Qt::CaseInsensitive))
+        {
+            results.append(fileInfo);
+        }
+    }
+    return results;
+}
+
 void mainWindow::showContextMenu(const QPoint &pos)
 {
     QModelIndex index = ui->listViewFiles->currentIndex();
@@ -154,7 +237,7 @@ void mainWindow::showContextMenu(const QPoint &pos)
     contextMenu.addAction(openAction);
     contextMenu.addAction(copyAction);
     contextMenu.addAction(cutAction);
-    if (!clipboard.isEmpty())
+    if (!clipboard.isEmpty() && isQFileSystemModel())
     {
         QAction *pasteAction = new QAction("Paste", this);
         contextMenu.addAction(pasteAction);
@@ -172,7 +255,7 @@ void mainWindow::open ()
 {
     QModelIndex index = ui->listViewFiles->currentIndex();
     QString itemText = index.data(Qt::DisplayRole).toString();
-    QString path = QDir::cleanPath(currentDir + QDir::separator() + itemText);
+    QString path = getFilePath(index);
     QFileInfo info(path);
     if (info.isDir())
     {
@@ -189,7 +272,7 @@ void mainWindow::copy ()
     clipboard.clear();
     QStringList list;
     foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
-        list.append(fileModel->filePath(index));
+        list.append(getFilePath(index));
     foreach (QString item, list)
         clipboard.append(item);
     mv = false;
@@ -200,7 +283,7 @@ void mainWindow::cut ()
     clipboard.clear();
     QStringList list;
     foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
-        list.append(fileModel->filePath(index));
+        list.append(getFilePath(index));
     foreach (QString item, list)
         clipboard.append(item);
     mv = true;
@@ -270,7 +353,7 @@ void mainWindow::rename ()
         foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
         {
             bool ok;
-            QString oldPath = fileModel->filePath(index);
+            QString oldPath = getFilePath(index);
             const QFileInfo info(oldPath);
             QString name = info.fileName();
             QString newName = QInputDialog::getText(this, "Rename file", "Enter new name for " + name, QLineEdit::Normal, name, &ok);
@@ -291,7 +374,7 @@ void mainWindow::remove ()
 {
     foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
     {
-        QString itemPath = fileModel->filePath(index);
+        QString itemPath = getFilePath(index);
         const QFileInfo info(itemPath);
         const QString name = info.fileName();
 
@@ -344,7 +427,7 @@ void mainWindow::del (QString d)
 void mainWindow::properties ()
 {
     QStringList list;
-    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())list.append(fileModel->filePath(index));
+    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())list.append(getFilePath(index));
     if (list.length() != 1) return;
     else
     {

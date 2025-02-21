@@ -73,14 +73,6 @@ build CMakeFiles/file-explorer.dir/mainwindow.cpp.o: CXX_COMPILER__file-explorer
   OBJECT_DIR = CMakeFiles/file-explorer.dir
   OBJECT_FILE_DIR = CMakeFiles/file-explorer.dir
 
-build CMakeFiles/file-explorer.dir/searchwindow.cpp.o: CXX_COMPILER__file-explorer_unscanned_Debug /home/josef/file-explorer/searchwindow.cpp || cmake_object_order_depends_target_file-explorer
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/file-explorer.dir/searchwindow.cpp.o.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fcolor-diagnostics -fPIC
-  INCLUDES = -I/home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/include -isystem /home/josef/Qt/6.8.0/gcc_64/include/QtCore -isystem /home/josef/Qt/6.8.0/gcc_64/include -isystem /home/josef/Qt/6.8.0/gcc_64/mkspecs/linux-g++ -isystem /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets -isystem /home/josef/Qt/6.8.0/gcc_64/include/QtGui
-  OBJECT_DIR = CMakeFiles/file-explorer.dir
-  OBJECT_FILE_DIR = CMakeFiles/file-explorer.dir
-
 build CMakeFiles/file-explorer.dir/propertiesdialog.cpp.o: CXX_COMPILER__file-explorer_unscanned_Debug /home/josef/file-explorer/propertiesdialog.cpp || cmake_object_order_depends_target_file-explorer
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/file-explorer.dir/propertiesdialog.cpp.o.d
@@ -97,7 +89,7 @@ build CMakeFiles/file-explorer.dir/propertiesdialog.cpp.o: CXX_COMPILER__file-ex
 #############################################
 # Link the executable file-explorer
 
-build file-explorer: CXX_EXECUTABLE_LINKER__file-explorer_Debug CMakeFiles/file-explorer.dir/file-explorer_autogen/mocs_compilation.cpp.o CMakeFiles/file-explorer.dir/main.cpp.o CMakeFiles/file-explorer.dir/mainwindow.cpp.o CMakeFiles/file-explorer.dir/searchwindow.cpp.o CMakeFiles/file-explorer.dir/propertiesdialog.cpp.o | /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Widgets.so.6.8.0 /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0 /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0 || file-explorer_autogen file-explorer_autogen_timestamp_deps
+build file-explorer: CXX_EXECUTABLE_LINKER__file-explorer_Debug CMakeFiles/file-explorer.dir/file-explorer_autogen/mocs_compilation.cpp.o CMakeFiles/file-explorer.dir/main.cpp.o CMakeFiles/file-explorer.dir/mainwindow.cpp.o CMakeFiles/file-explorer.dir/propertiesdialog.cpp.o | /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Widgets.so.6.8.0 /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0 /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0 || file-explorer_autogen file-explorer_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = -Wl,-rpath,/home/josef/Qt/6.8.0/gcc_64/lib:  /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Widgets.so.6.8.0  /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so  /home/josef/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0  -Wl,-rpath-link,/home/josef/Qt/6.8.0/gcc_64/lib
   OBJECT_DIR = CMakeFiles/file-explorer.dir

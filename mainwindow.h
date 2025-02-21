@@ -17,6 +17,9 @@
 #include <QMessageBox>
 #include <QShortcut>
 #include <QDesktopServices>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <QDirIterator>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -44,6 +47,7 @@ private:
     void del(QString d);
     void properties();
     bool pasteRecursively(QString source, QString destination);
+    bool isQFileSystemModel();
     void showContextMenu(const QPoint &pos);
     QString permissions(QFileInfo &info);
     int conflict(QString &d);
@@ -52,6 +56,10 @@ private:
     QString currentDir = QDir::homePath();
     QStringList clipboard;
     bool mv = false;
+    QString getFilePath(const QModelIndex &index);
+    void performSearch(const QString& keyword);
+    void resetFileView();
+    QFileInfoList findFiles(const QString& startDir, const QString& keyword);
 
 private slots:
     void on_btnCreateDir_clicked();

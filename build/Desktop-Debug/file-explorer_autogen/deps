@@ -1,4 +1,5 @@
 file-explorer_autogen/timestamp: \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QDirIterator \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QFileInfo \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QMimeDatabase \
@@ -48,6 +49,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdeadlinetimer.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdebug.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdir.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdiriterator.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qdirlisting.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qelapsedtimer.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qendian.h \
@@ -156,6 +158,8 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QMouseEvent \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QShortcut \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QStandardItem \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QStandardItemModel \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QTransform \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qaction.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qbitmap.h \
@@ -190,6 +194,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qscreen_platform.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qshortcut.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qstandarditemmodel.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextcursor.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextdocument.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/qtextformat.h \
@@ -535,8 +540,6 @@ file-explorer_autogen/timestamp: \
 	/home/josef/file-explorer/mainwindow.h \
 	/home/josef/file-explorer/propertiesdialog.cpp \
 	/home/josef/file-explorer/propertiesdialog.h \
-	/home/josef/file-explorer/searchwindow.cpp \
-	/home/josef/file-explorer/searchwindow.h \
 	/usr/include/alloca.h \
 	/usr/include/asm-generic/errno-base.h \
 	/usr/include/asm-generic/errno.h \

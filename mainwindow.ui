@@ -106,21 +106,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btnSearch">
+           <widget class="QLineEdit" name="searchTxt">
             <property name="minimumSize">
              <size>
-              <width>40</width>
+              <width>0</width>
               <height>40</height>
              </size>
             </property>
-            <property name="maximumSize">
-             <size>
-              <width>40</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>🔎</string>
+            <property name="placeholderText">
+             <string>Search...</string>
             </property>
            </widget>
           </item>
