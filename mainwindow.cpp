@@ -139,14 +139,16 @@ void mainWindow::on_listWidgetDrives_doubleClicked()
 
 QString mainWindow::getFilePath(const QModelIndex &index)
 {
+    QString path;
     if (!isQFileSystemModel())
     {
-        return index.data(Qt::UserRole).toString();
+        path = index.data(Qt::UserRole).toString();
     }
     else
     {
-        return fileModel->filePath(index);
+        path = fileModel->filePath(index);
     }
+    return QDir::cleanPath(path);
 }
 
 bool mainWindow::isQFileSystemModel()
@@ -534,7 +536,7 @@ void mainWindow::addToZip(const QString &filePath, const QString &parentDir, Qua
             QuaZipNewInfo newInfo(inZipPath, filePath);
             if (zipFile.open(QIODevice::WriteOnly, newInfo))
             {
-                const qint64 chunkSize = 4 * 1024 * 1024; // 4MB
+                const qint64 chunkSize = 4 * 1024 * 1024; // 4MiB
                 QByteArray buffer;
                 buffer.resize(chunkSize);
                 qint64 bytesRead;
@@ -550,7 +552,63 @@ void mainWindow::addToZip(const QString &filePath, const QString &parentDir, Qua
 
 void mainWindow::unzip()
 {
-    QMessageBox::critical(nullptr, "Error", "unzip", QMessageBox::Ok);
+    QModelIndexList index = ui->listViewFiles->selectionModel()->selectedIndexes();
+    QString zipPath = getFilePath(index[0]);
+    QFileInfo info(zipPath);
+    int i = 0;
+    QString newPath = currentDir + QDir::separator() + info.baseName();
+    while (true)
+    {
+        if (!QFileInfo::exists(newPath))
+        {
+            break;
+        }
+        else
+        {
+            i++;
+            newPath = currentDir + QDir::separator() + info.baseName() + " (" + QString::number(i) + ")";
+        }
+    }
+    QDir dir;
+    dir.mkpath(newPath);
+
+    QuaZip zipArchive(zipPath);
+    if(!zipArchive.open(QuaZip::mdUnzip))
+    {
+        QMessageBox::critical(nullptr, "Error", "Failed to open " + zipPath, QMessageBox::Ok);
+        return;
+    }
+    QStringList filePaths;
+    for (bool b = zipArchive.goToFirstFile(); b; b = zipArchive.goToNextFile())
+    {
+        QString temp = zipArchive.getCurrentFileName();
+        if (temp.endsWith(QDir::separator())) dir.mkpath(newPath + QDir::separator() + temp);
+        else filePaths.append(temp);
+    }
+    foreach (QString filePath, filePaths)
+    {
+        QFile file(newPath + QDir::separator() + filePath);
+        if (zipArchive.setCurrentFile(filePath))
+        {
+            if (file.open(QIODevice::WriteOnly))
+            {
+                QuaZipFile zipFile(&zipArchive);
+                if (zipFile.open(QIODevice::ReadOnly))
+                {
+                    const qint64 chunkSize = 4 * 1024 * 1024; // 4MiB
+                    QByteArray buffer;
+                    buffer.resize(chunkSize);
+                    qint64 bytesRead;
+                    while ((bytesRead = zipFile.read(buffer.data(), chunkSize)) > 0) {
+                        file.write(buffer.data(), bytesRead);
+                    }
+                    file.close();
+                }
+                zipFile.close();
+            }
+        }
+    }
+    zipArchive.close();
 }
 
 void mainWindow::properties ()
