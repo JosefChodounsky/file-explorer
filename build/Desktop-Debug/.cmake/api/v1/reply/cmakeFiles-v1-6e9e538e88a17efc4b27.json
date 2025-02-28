@@ -1666,6 +1666,202 @@
 			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake"
 		},
 		{
+			"isExternal" : true,
+			"path" : "/usr/local/lib/cmake/QuaZip/QuaZip-Qt6ConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/local/lib/cmake/QuaZip/QuaZip-Qt6Config.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/local/lib/cmake/QuaZip/QuaZip-Qt6_StaticTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/usr/local/lib/cmake/QuaZip/QuaZip-Qt6_StaticTargets-release.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6ConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6Config.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6ConfigExtras.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtInstallPaths.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6Targets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6VersionlessAliasTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtFeature.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtFeatureCommon.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicAppleHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicExternalProjectHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicFindPackageHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicGitHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicPluginHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicSbomHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicTargetHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicTestHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicToolHelpers.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6Dependencies.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatConfigVersionImpl.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatDependencies.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatTargets-relwithdebinfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatAdditionalTargetInfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatVersionlessAliasTargets.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindZLIB.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/SelectLibraryConfigurations.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindPackageMessage.cmake"
+		},
+		{
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/GNUInstallDirs.cmake"

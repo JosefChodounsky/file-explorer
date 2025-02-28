@@ -22,7 +22,8 @@
 			"set_property",
 			"find_dependency",
 			"_qt_internal_find_third_party_dependencies",
-			"_qt_internal_find_qt_dependencies"
+			"_qt_internal_find_qt_dependencies",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -37,7 +38,9 @@
 			"/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
 			"/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake",
 			"/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake",
-			"/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake"
+			"/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake",
+			"/usr/local/lib/cmake/QuaZip/QuaZip-Qt6_StaticTargets.cmake",
+			"/usr/local/lib/cmake/QuaZip/QuaZip-Qt6Config.cmake"
 		],
 		"nodes" : 
 		[
@@ -47,7 +50,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 23,
+				"line" : 27,
 				"parent" : 0
 			},
 			{
@@ -71,19 +74,19 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 66,
+				"line" : 70,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 49,
+				"line" : 53,
 				"parent" : 0
 			},
 			{
 				"command" : 8,
 				"file" : 1,
-				"line" : 13,
+				"line" : 16,
 				"parent" : 0
 			},
 			{
@@ -203,10 +206,42 @@
 				"parent" : 27
 			},
 			{
+				"command" : 8,
+				"file" : 1,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"file" : 13,
+				"parent" : 30
+			},
+			{
+				"command" : 7,
+				"file" : 13,
+				"line" : 29,
+				"parent" : 31
+			},
+			{
+				"file" : 12,
+				"parent" : 32
+			},
+			{
+				"command" : 6,
+				"file" : 12,
+				"line" : 61,
+				"parent" : 33
+			},
+			{
 				"command" : 5,
 				"file" : 0,
 				"line" : 645,
 				"parent" : 2
+			},
+			{
+				"command" : 13,
+				"file" : 1,
+				"line" : 13,
+				"parent" : 0
 			}
 		]
 	},
@@ -219,14 +254,18 @@
 					"fragment" : "-DQT_QML_DEBUG -g -std=gnu++17 -fcolor-diagnostics"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 35,
 					"fragment" : "-fPIC"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 30,
+					"backtrace" : 6,
+					"define" : "QT_CORE5COMPAT_LIB"
+				},
+				{
+					"backtrace" : 35,
 					"define" : "QT_CORE_LIB"
 				},
 				{
@@ -236,6 +275,10 @@
 				{
 					"backtrace" : 6,
 					"define" : "QT_WIDGETS_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QUAZIP_STATIC"
 				}
 			],
 			"includes" : 
@@ -245,17 +288,21 @@
 					"path" : "/home/josef/file-explorer/build/Desktop-Debug/file-explorer_autogen/include"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 36,
+					"path" : "/usr/local/include/QuaZip"
+				},
+				{
+					"backtrace" : 35,
 					"isSystem" : true,
 					"path" : "/home/josef/Qt/6.8.0/gcc_64/include/QtCore"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 35,
 					"isSystem" : true,
 					"path" : "/home/josef/Qt/6.8.0/gcc_64/include"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 35,
 					"isSystem" : true,
 					"path" : "/home/josef/Qt/6.8.0/gcc_64/mkspecs/linux-g++"
 				},
@@ -268,6 +315,21 @@
 					"backtrace" : 6,
 					"isSystem" : true,
 					"path" : "/home/josef/Qt/6.8.0/gcc_64/include/QtGui"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/local/include/QuaZip-Qt6-1.4"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/local/include/QuaZip-Qt6-1.4/quazip"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/josef/Qt/6.8.0/gcc_64/include/QtCore5Compat"
 				}
 			],
 			"language" : "CXX",
@@ -275,8 +337,8 @@
 			{
 				"backtraces" : 
 				[
-					30,
-					30
+					35,
+					35
 				],
 				"standard" : "17"
 			},
@@ -292,11 +354,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "file-explorer_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "file-explorer_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "file-explorer_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "file-explorer::@6890427a1f51a3e7e1df",
@@ -336,6 +398,16 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 6,
+				"fragment" : "/usr/local/lib/libquazip1-qt6.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libz.so",
+				"role" : "libraries"
+			},
+			{
 				"backtrace" : 13,
 				"fragment" : "/home/josef/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0",
 				"role" : "libraries"
@@ -351,7 +423,12 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 30,
+				"backtrace" : 34,
+				"fragment" : "/home/josef/Qt/6.8.0/gcc_64/lib/libQt6Core5Compat.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 35,
 				"fragment" : "/home/josef/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0",
 				"role" : "libraries"
 			},

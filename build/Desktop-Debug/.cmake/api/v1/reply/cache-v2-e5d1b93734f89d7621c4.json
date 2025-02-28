@@ -1494,6 +1494,18 @@
 			"value" : "[/usr/include][v()]"
 		},
 		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_ZLIB",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding ZLIB"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[/usr/lib/x86_64-linux-gnu/libz.so][/usr/include][c ][v1.2.13()]"
+		},
+		{
 			"name" : "HAVE_STDATOMIC",
 			"properties" : 
 			[
@@ -1519,7 +1531,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "OPENGL_EGL_INCLUDE_DIR-NOTFOUND"
+			"value" : "/usr/include"
 		},
 		{
 			"name" : "OPENGL_GLES2_INCLUDE_DIR",
@@ -1567,7 +1579,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "OPENGL_GLU_INCLUDE_DIR-NOTFOUND"
+			"value" : "/usr/include"
 		},
 		{
 			"name" : "OPENGL_GLX_INCLUDE_DIR",
@@ -1615,7 +1627,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "OPENGL_egl_LIBRARY-NOTFOUND"
+			"value" : "/usr/lib/x86_64-linux-gnu/libEGL.so"
 		},
 		{
 			"name" : "OPENGL_gles2_LIBRARY",
@@ -1663,7 +1675,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "OPENGL_glu_LIBRARY-NOTFOUND"
+			"value" : "/usr/lib/x86_64-linux-gnu/libGLU.so"
 		},
 		{
 			"name" : "OPENGL_glx_LIBRARY",
@@ -2370,6 +2382,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "QT_FEATURE_big_codecs",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: big_codecs (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
 			"name" : "QT_FEATURE_buttongroup",
 			"properties" : 
 			[
@@ -2476,6 +2500,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "OFF"
+		},
+		{
+			"name" : "QT_FEATURE_codecs",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: codecs (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
 		},
 		{
 			"name" : "QT_FEATURE_colordialog",
@@ -3688,6 +3724,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "ON"
+		},
+		{
+			"name" : "QT_FEATURE_iconv",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: iconv (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "OFF"
 		},
 		{
 			"name" : "QT_FEATURE_icu",
@@ -5850,6 +5898,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "QT_FEATURE_textcodec",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Qt feature: textcodec (from target Qt6::Core5Compat)"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "ON"
+		},
+		{
 			"name" : "QT_FEATURE_textdate",
 			"properties" : 
 			[
@@ -6606,6 +6666,18 @@
 			"value" : "/home/josef/Qt/6.8.0/gcc_64/bin/qmake"
 		},
 		{
+			"name" : "Qt6Core5Compat_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt6Core5Compat."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat"
+		},
+		{
 			"name" : "Qt6CoreTools_DIR",
 			"properties" : 
 			[
@@ -6714,6 +6786,54 @@
 			"value" : "/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6"
 		},
 		{
+			"name" : "QuaZip-Qt6-1.4_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for QuaZip-Qt6-1.4."
+				}
+			],
+			"type" : "PATH",
+			"value" : "QuaZip-Qt6-1.4_DIR-NOTFOUND"
+		},
+		{
+			"name" : "QuaZip-Qt6_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for QuaZip-Qt6."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/local/lib/cmake/QuaZip"
+		},
+		{
+			"name" : "QuaZip::QuaZip_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for QuaZip::QuaZip."
+				}
+			],
+			"type" : "PATH",
+			"value" : "QuaZip::QuaZip_DIR-NOTFOUND"
+		},
+		{
+			"name" : "QuaZip_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for QuaZip."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/local/lib/cmake/QuaZip"
+		},
+		{
 			"name" : "Vulkan_GLSLANG_VALIDATOR_EXECUTABLE",
 			"properties" : 
 			[
@@ -6800,6 +6920,54 @@
 			],
 			"type" : "FILEPATH",
 			"value" : "XKB_LIBRARY-NOTFOUND"
+		},
+		{
+			"name" : "ZLIB_INCLUDE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/include"
+		},
+		{
+			"name" : "ZLIB_LIBRARY_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "ZLIB_LIBRARY_DEBUG-NOTFOUND"
+		},
+		{
+			"name" : "ZLIB_LIBRARY_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/libz.so"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

@@ -21,6 +21,9 @@
 #include <QStandardItem>
 #include <QDirIterator>
 
+#include <QuaZip-Qt6-1.4/quazip/quazip.h>
+#include <QuaZip-Qt6-1.4/quazip/quazipfile.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class mainWindow;
@@ -45,12 +48,16 @@ private:
     void rename();
     void remove();
     void del(QString d);
+    void zip();
+    void addToZip(const QString &filePath, const QString &parentDir, QuaZip *zipArchive);
+    void unzip();
     void properties();
     bool pasteRecursively(QString source, QString destination);
     bool isQFileSystemModel();
     void showContextMenu(const QPoint &pos);
     QString permissions(QFileInfo &info);
     int conflict(QString &d);
+    int isArchive();
     QFileSystemModel *fileModel;
     Ui::mainWindow *ui;
     QString currentDir = QDir::homePath();

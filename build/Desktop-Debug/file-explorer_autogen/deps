@@ -1,13 +1,25 @@
 file-explorer_autogen/timestamp: \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QByteArray \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QDateTime \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QDirIterator \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QFile \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QFileInfo \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QHash \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QIODevice \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QList \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QMimeDatabase \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QObject \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QRect \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSaveFile \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSize \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QSizeF \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QStorageInfo \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QString \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QStringList \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QTextStream \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QTimeZone \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/Qt \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/QtGlobal \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20functional.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20iterator.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20memory.h \
@@ -101,6 +113,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qrect.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qrefcount.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qregularexpression.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qsavefile.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qscopedpointer.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qscopeguard.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qset.h \
@@ -153,6 +166,10 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qversiontagging.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qxptype_traits.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtCore/qyieldcpu.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore5Compat/QTextCodec \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore5Compat/qcore5global.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore5Compat/qtcore5compat-config.h \
+	/home/josef/Qt/6.8.0/gcc_64/include/QtCore5Compat/qtextcodec.h \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QAction \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QDesktopServices \
 	/home/josef/Qt/6.8.0/gcc_64/include/QtGui/QFileSystemModel \
@@ -291,6 +308,14 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core/Qt6CoreTargets-relwithdebinfo.cmake \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core/Qt6CoreTargets.cmake \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core/Qt6CoreVersionlessAliasTargets.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatAdditionalTargetInfo.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatConfig.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatConfigVersion.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatConfigVersionImpl.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatDependencies.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatTargets-relwithdebinfo.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatTargets.cmake \
+	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core5Compat/Qt6Core5CompatVersionlessAliasTargets.cmake \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsAdditionalTargetInfo.cmake \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfig.cmake \
 	/home/josef/Qt/6.8.0/gcc_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersion.cmake \
@@ -519,6 +544,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindPkgConfig.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindThreads.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindVulkan.cmake \
+	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/FindZLIB.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/GNUInstallDirs.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake \
@@ -530,6 +556,7 @@ file-explorer_autogen/timestamp: \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/Linux.cmake \
 	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/Platform/UnixPaths.cmake \
+	/home/josef/Qt/Tools/CMake/share/cmake-3.29/Modules/SelectLibraryConfigurations.cmake \
 	/home/josef/file-explorer/CMakeLists.txt \
 	/home/josef/file-explorer/build/Desktop-Debug/.qtc/package-manager/auto-setup.cmake \
 	/home/josef/file-explorer/build/Desktop-Debug/CMakeFiles/3.29.3/CMakeCXXCompiler.cmake \
@@ -740,23 +767,29 @@ file-explorer_autogen/timestamp: \
 	/usr/include/string.h \
 	/usr/include/strings.h \
 	/usr/include/time.h \
+	/usr/include/unistd.h \
 	/usr/include/wchar.h \
 	/usr/include/wctype.h \
 	/usr/include/x86_64-linux-gnu/asm/errno.h \
 	/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
 	/usr/include/x86_64-linux-gnu/bits/byteswap.h \
+	/usr/include/x86_64-linux-gnu/bits/confname.h \
 	/usr/include/x86_64-linux-gnu/bits/cpu-set.h \
 	/usr/include/x86_64-linux-gnu/bits/endian.h \
 	/usr/include/x86_64-linux-gnu/bits/endianness.h \
+	/usr/include/x86_64-linux-gnu/bits/environments.h \
 	/usr/include/x86_64-linux-gnu/bits/errno.h \
 	/usr/include/x86_64-linux-gnu/bits/floatn-common.h \
 	/usr/include/x86_64-linux-gnu/bits/floatn.h \
+	/usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+	/usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
 	/usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
 	/usr/include/x86_64-linux-gnu/bits/local_lim.h \
 	/usr/include/x86_64-linux-gnu/bits/locale.h \
 	/usr/include/x86_64-linux-gnu/bits/long-double.h \
 	/usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
 	/usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+	/usr/include/x86_64-linux-gnu/bits/posix_opt.h \
 	/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
 	/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
 	/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
@@ -802,6 +835,7 @@ file-explorer_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/bits/typesizes.h \
 	/usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
 	/usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+	/usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
 	/usr/include/x86_64-linux-gnu/bits/waitflags.h \
 	/usr/include/x86_64-linux-gnu/bits/waitstatus.h \
 	/usr/include/x86_64-linux-gnu/bits/wchar.h \
@@ -826,9 +860,24 @@ file-explorer_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/sys/cdefs.h \
 	/usr/include/x86_64-linux-gnu/sys/select.h \
 	/usr/include/x86_64-linux-gnu/sys/types.h \
+	/usr/include/zconf.h \
+	/usr/include/zlib.h \
 	/usr/lib/llvm-14/lib/clang/14.0.6/include/__stddef_max_align_t.h \
 	/usr/lib/llvm-14/lib/clang/14.0.6/include/stdarg.h \
 	/usr/lib/llvm-14/lib/clang/14.0.6/include/stdbool.h \
 	/usr/lib/llvm-14/lib/clang/14.0.6/include/stddef.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/ioapi.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/quazip.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/quazip_global.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/quazip_qt_compat.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/quazipfile.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/quazipfileinfo.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/quazipnewinfo.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/unzip.h \
+	/usr/local/include/QuaZip-Qt6-1.4/quazip/zip.h \
+	/usr/local/lib/cmake/QuaZip/QuaZip-Qt6Config.cmake \
+	/usr/local/lib/cmake/QuaZip/QuaZip-Qt6ConfigVersion.cmake \
+	/usr/local/lib/cmake/QuaZip/QuaZip-Qt6_StaticTargets-release.cmake \
+	/usr/local/lib/cmake/QuaZip/QuaZip-Qt6_StaticTargets.cmake \
 	/home/josef/file-explorer/mainwindow.ui \
 	/home/josef/Qt/Tools/CMake/bin/cmake

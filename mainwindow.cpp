@@ -214,10 +214,34 @@ QFileInfoList mainWindow::findFiles(const QString& startDir, const QString& keyw
     return results;
 }
 
+int mainWindow::isArchive()
+{
+    QStringList list;
+    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
+    {
+        list.append(getFilePath(index));
+        if (!index.isValid()) return 0;
+    }
+    if (list.length() == 1)
+    {
+        QFileInfo info(list[0]);
+        if (info.completeSuffix() == "zip") return 1;
+    }
+    bool notArchive = true;
+    foreach (QString item, list)
+    {
+        QFileInfo info(item);
+        if (info.completeSuffix() == "zip") notArchive = false;
+    }
+    if (notArchive) return 2;
+    return 0;
+}
+
 void mainWindow::showContextMenu(const QPoint &pos)
 {
     QModelIndex index = ui->listViewFiles->currentIndex();
     if (!index.isValid()) return;
+    int archive = isArchive();
     QMenu contextMenu(this);
 
     QAction *openAction = new QAction("Open", this);
@@ -245,8 +269,20 @@ void mainWindow::showContextMenu(const QPoint &pos)
     }
     contextMenu.addAction(renameAction);
     contextMenu.addAction(deleteAction);
-    contextMenu.addAction(propertiesAction);
+    if (archive == 1)
+    {
+        QAction *unzipAction = new QAction("Extract here", this);
+        connect (unzipAction, &QAction::triggered, this, &mainWindow::unzip);
+        contextMenu.addAction(unzipAction);
+    }
 
+    if (archive == 2)
+    {
+        QAction *zipAction = new QAction("Compress to .zip file", this);
+        connect (zipAction, &QAction::triggered, this, &mainWindow::zip);
+        contextMenu.addAction(zipAction);
+    }
+    contextMenu.addAction(propertiesAction);
     contextMenu.exec(ui->listViewFiles->viewport()->mapToGlobal(pos));
 }
 
@@ -298,6 +334,8 @@ void mainWindow::paste ()
             foreach (const QString oldPath, clipboard)
             {                
                 const QFileInfo info(oldPath);
+                const QString baseName = info.baseName();
+                const QString completeSuffix = info.completeSuffix();
                 QString name = info.fileName();
                 QString newPath = currentDir + QDir::separator() + name;
                 if (QFile::exists(newPath))
@@ -312,10 +350,10 @@ void mainWindow::paste ()
                         int i = 1;
                         while (true)
                         {
-                            newPath = currentDir + QDir::separator() + name + " (" + QString::number(i) + ")";
+                            newPath = currentDir + QDir::separator() + baseName + " (" + QString::number(i) + ")." + completeSuffix;
                             if (!QFileInfo::exists(newPath))
                             {
-                                name += QString(" (%1)").arg(i);
+                                name = baseName + " (" + QString::number(i) + ")." + completeSuffix;
                                 break;
                             }
                             else
@@ -355,14 +393,16 @@ void mainWindow::rename ()
             bool ok;
             QString oldPath = getFilePath(index);
             const QFileInfo info(oldPath);
+            QString path = info.absolutePath();
             QString name = info.fileName();
             QString newName = QInputDialog::getText(this, "Rename file", "Enter new name for " + name, QLineEdit::Normal, name, &ok);
             if (ok && !newName.isEmpty())
             {
                 QFile file(oldPath);
-                file.rename(currentDir + QDir::separator() + newName);
+                file.rename(path + QDir::separator() + newName);
             }
         }
+        if (!isQFileSystemModel()) performSearch(ui->searchTxt->text());;
     }
     catch (std::exception ex)
     {
@@ -400,6 +440,7 @@ void mainWindow::remove ()
             QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
         }
     }
+    if (!isQFileSystemModel()) performSearch(ui->searchTxt->text());
 }
 
 void mainWindow::del (QString d)
@@ -422,6 +463,94 @@ void mainWindow::del (QString d)
     {
         QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission for " + d + ". ", QMessageBox::Ok);
     }
+}
+
+void mainWindow::zip()
+{
+    int i = 0;
+    QString zipPath;
+    QString newPath = currentDir + QDir::separator() + "output.zip";
+    while (true)
+    {
+        if (!QFileInfo::exists(newPath))
+        {
+            zipPath = newPath;
+            break;
+        }
+        else
+        {
+            i++;
+            newPath = currentDir + QDir::separator() + "output" + " (" + QString::number(i) + ").zip";
+        }        
+    }
+    QuaZip zipArchive(zipPath);
+    if(!zipArchive.open(QuaZip::mdCreate))
+    {
+        QMessageBox::critical(nullptr, "Error", "Failed to create " + zipPath, QMessageBox::Ok);
+        return;
+    }
+    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
+    {
+        QString filePath = getFilePath(index);
+        addToZip(filePath, "", &zipArchive);
+    }
+    zipArchive.close();
+}
+
+void mainWindow::addToZip(const QString &filePath, const QString &parentDir, QuaZip *zipArchive)
+{
+    QFileInfo fileInfo(filePath);
+    QString inZipPath;
+    if (parentDir.isEmpty())
+    {
+        inZipPath = fileInfo.fileName();
+    } else
+    {
+        inZipPath = parentDir + "/" + fileInfo.fileName();
+    }
+    if (fileInfo.isDir())
+    {
+        if (!inZipPath.isEmpty())
+        {
+            QuaZipFile dirZipFile(zipArchive);
+            QuaZipNewInfo dirInfo(inZipPath + "/", filePath);
+            if (dirZipFile.open(QIODevice::WriteOnly, dirInfo))
+            {
+                dirZipFile.close();
+            }
+        }
+        QDir dir(filePath);
+        QFileInfoList entries = dir.entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot);
+        foreach(const QFileInfo &entry, entries)
+        {
+            addToZip(entry.absoluteFilePath(), inZipPath, zipArchive);
+        }
+    } else
+    {
+        QFile file(filePath);
+        if (file.open(QIODevice::ReadOnly))
+        {
+            QuaZipFile zipFile(zipArchive);
+            QuaZipNewInfo newInfo(inZipPath, filePath);
+            if (zipFile.open(QIODevice::WriteOnly, newInfo))
+            {
+                const qint64 chunkSize = 4 * 1024 * 1024; // 4MB
+                QByteArray buffer;
+                buffer.resize(chunkSize);
+                qint64 bytesRead;
+                while ((bytesRead = file.read(buffer.data(), chunkSize)) > 0) {
+                    zipFile.write(buffer.data(), bytesRead);
+                }
+                zipFile.close();
+            }
+            file.close();
+        }
+    }
+}
+
+void mainWindow::unzip()
+{
+    QMessageBox::critical(nullptr, "Error", "unzip", QMessageBox::Ok);
 }
 
 void mainWindow::properties ()
