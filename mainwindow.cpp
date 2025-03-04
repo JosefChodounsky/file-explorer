@@ -66,6 +66,7 @@ void mainWindow::on_btnCreateDir_clicked()
     {
         QDir dir;
         dir.mkpath(getAvailableName(currentDir + QDir::separator() + "New Folder", ""));
+        performSearch(ui->searchTxt->text());
     }
     catch (std::exception ex)
     {
@@ -75,24 +76,35 @@ void mainWindow::on_btnCreateDir_clicked()
 
 void mainWindow::on_btnGoUp_clicked()
 {
-    QDir newDir(currentDir);
-    newDir.cdUp();
-    currentDir = newDir.absolutePath();
-    ui->searchTxt->clear();
-    performSearch(ui->searchTxt->text());
-    ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
-    ui->txtCurrentPath->setText(currentDir);
+    if (!isQFileSystemModel())
+    {
+        ui->searchTxt->clear();
+        resetFileView();
+    }
+    else
+    {
+        QDir newDir(currentDir);
+        newDir.cdUp();
+        currentDir = newDir.absolutePath();
+        ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+        ui->txtCurrentPath->setText(currentDir);
+    }
 }
 
 void mainWindow::on_listViewFiles_doubleClicked()
 {
     QModelIndex index = ui->listViewFiles->currentIndex();
     QString itemText = index.data(Qt::DisplayRole).toString();
-    QString newDir = QDir::cleanPath(currentDir + QDir::separator() + itemText);
+    QString newDir = QDir::cleanPath(currentDir + QDir::separator() + itemText);    
     if (QFileInfo::exists(newDir))
     {
         if (QFileInfo(newDir).isDir())
         {
+            if(!isQFileSystemModel())
+            {
+                ui->searchTxt->clear();
+                resetFileView();
+            }
             currentDir = newDir;
             ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
             ui->txtCurrentPath->setText(currentDir);
@@ -156,9 +168,9 @@ void mainWindow::performSearch(const QString& keyword)
 
     QStandardItemModel* searchModel = new QStandardItemModel(this);
 
-    foreach (const QFileInfo& fileInfo, results)
+    foreach (const QFileInfo &fileInfo, results)
     {
-        QStandardItem* item = new QStandardItem;
+        QStandardItem *item = new QStandardItem;
         item->setText(fileInfo.fileName());
         item->setData(fileInfo.filePath(), Qt::UserRole);
 
