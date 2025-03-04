@@ -62,45 +62,26 @@ void mainWindow::setupFileListView()
 
 void mainWindow::on_btnCreateDir_clicked()
 {
-    int i = 0;
-    while (true)
+    try
     {
-        try
-        {
-            QString newPath = QDir::cleanPath(currentDir + QDir::separator() + "New Folder");;
-            if (i != 0)
-            {
-                newPath += QString(" (%1)").arg(i);
-            }
-            QDir dir = newPath;
-            if (!dir.exists(newPath))
-            {
-                dir.mkdir(newPath);
-                break;
-            }
-            else
-            {
-                i++;
-            }
-        }
-        catch (std::exception ex)
-        {
-            QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
-        }
+        QDir dir;
+        dir.mkpath(getAvailableName(currentDir + QDir::separator() + "New Folder", ""));
+    }
+    catch (std::exception ex)
+    {
+        QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
     }
 }
 
 void mainWindow::on_btnGoUp_clicked()
 {
     QDir newDir(currentDir);
-    if (newDir.cdUp())
-    {
-        currentDir = newDir.absolutePath();
-        ui->searchTxt->clear();
-        performSearch(ui->searchTxt->text());
-        ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
-        ui->txtCurrentPath->setText(currentDir);        
-    }
+    newDir.cdUp();
+    currentDir = newDir.absolutePath();
+    ui->searchTxt->clear();
+    performSearch(ui->searchTxt->text());
+    ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+    ui->txtCurrentPath->setText(currentDir);
 }
 
 void mainWindow::on_listViewFiles_doubleClicked()
@@ -207,10 +188,10 @@ QFileInfoList mainWindow::findFiles(const QString& startDir, const QString& keyw
     while (it.hasNext())
     {
         it.next();
-        QFileInfo fileInfo = it.fileInfo();
-        if (fileInfo.fileName().contains(keyword, Qt::CaseInsensitive))
+        QFileInfo info = it.fileInfo();
+        if (info.fileName().contains(keyword, Qt::CaseInsensitive))
         {
-            results.append(fileInfo);
+            results.append(info);
         }
     }
     return results;
@@ -246,21 +227,22 @@ void mainWindow::showContextMenu(const QPoint &pos)
     int archive = isArchive();
     QMenu contextMenu(this);
 
-    QAction *openAction = new QAction("Open", this);
     QAction *copyAction = new QAction("Copy", this);
     QAction *cutAction = new QAction("Cut", this);
     QAction *renameAction = new QAction("Rename", this);
-    QAction *deleteAction = new QAction("Delete", this);
-    QAction *propertiesAction = new QAction("Properties", this);
+    QAction *deleteAction = new QAction("Delete", this);    
 
-    connect (openAction, &QAction::triggered, this, &mainWindow::open);
     connect (copyAction, &QAction::triggered, this, &mainWindow::copy);
     connect (cutAction, &QAction::triggered, this, &mainWindow::cut);
     connect (renameAction, &QAction::triggered, this, &mainWindow::rename);
     connect (deleteAction, &QAction::triggered, this, &mainWindow::remove);
-    connect (propertiesAction, &QAction::triggered, this, &mainWindow::properties);
 
-    contextMenu.addAction(openAction);
+    if (ui->listViewFiles->selectionModel()->selectedIndexes().length() == 1)
+    {
+        QAction *openAction = new QAction("Open", this);
+        connect (openAction, &QAction::triggered, this, &mainWindow::open);
+        contextMenu.addAction(openAction);
+    }
     contextMenu.addAction(copyAction);
     contextMenu.addAction(cutAction);
     if (!clipboard.isEmpty() && isQFileSystemModel())
@@ -284,15 +266,19 @@ void mainWindow::showContextMenu(const QPoint &pos)
         connect (zipAction, &QAction::triggered, this, &mainWindow::zip);
         contextMenu.addAction(zipAction);
     }
-    contextMenu.addAction(propertiesAction);
+    if (ui->listViewFiles->selectionModel()->selectedIndexes().length() == 1)
+    {
+        QAction *propertiesAction = new QAction("Properties", this);
+        connect (propertiesAction, &QAction::triggered, this, &mainWindow::properties);
+        contextMenu.addAction(propertiesAction);
+    }
     contextMenu.exec(ui->listViewFiles->viewport()->mapToGlobal(pos));
 }
 
 
 void mainWindow::open ()
 {
-    QModelIndex index = ui->listViewFiles->currentIndex();
-    QString itemText = index.data(Qt::DisplayRole).toString();
+    QModelIndex index = ui->listViewFiles->currentIndex();    
     QString path = getFilePath(index);
     QFileInfo info(path);
     if (info.isDir())
@@ -308,22 +294,16 @@ void mainWindow::open ()
 void mainWindow::copy ()
 {
     clipboard.clear();
-    QStringList list;
     foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
-        list.append(getFilePath(index));
-    foreach (QString item, list)
-        clipboard.append(item);
+        clipboard.append(QDir::cleanPath(getFilePath(index)));
     mv = false;
 }
 
 void mainWindow::cut ()
 {
     clipboard.clear();
-    QStringList list;
     foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
-        list.append(getFilePath(index));
-    foreach (QString item, list)
-        clipboard.append(item);
+        clipboard.append(QDir::cleanPath(getFilePath(index)));
     mv = true;
 }
 
@@ -349,27 +329,24 @@ void mainWindow::paste ()
                     if (response == 1) del(newPath);
                     if (response == 2)
                     {
-                        int i = 1;
-                        while (true)
-                        {
-                            newPath = currentDir + QDir::separator() + baseName + " (" + QString::number(i) + ")." + completeSuffix;
-                            if (!QFileInfo::exists(newPath))
-                            {
-                                name = baseName + " (" + QString::number(i) + ")." + completeSuffix;
-                                break;
-                            }
-                            else
-                            {
-                                i++;
-                            }
-                        }
+                        QString suffix;
+                        if (completeSuffix != "")suffix = "." + completeSuffix;
+                        else suffix = "";
+                        newPath = getAvailableName(currentDir + QDir::separator() + baseName, suffix);
                     }
                 }
                 if (info.isDir())
-                {
-                    QDir destDir;
-                    destDir.mkpath(newPath);
-                    pasteRecursively(oldPath, newPath);
+                {                    
+                    if (!currentDir.startsWith(oldPath))
+                    {
+                        QDir dir;
+                        dir.mkpath(newPath);
+                        pasteRecursively(oldPath, newPath);
+                    }
+                    else
+                    {
+                        QMessageBox::critical(nullptr, "Error", "Can't paste a directory in itself.  ", QMessageBox::Ok);
+                    }
                 }
                 else
                 {
@@ -416,8 +393,8 @@ void mainWindow::remove ()
 {
     foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
     {
-        QString itemPath = getFilePath(index);
-        const QFileInfo info(itemPath);
+        QString path = getFilePath(index);
+        const QFileInfo info(path);
         const QString name = info.fileName();
 
         try
@@ -426,14 +403,14 @@ void mainWindow::remove ()
             {
                 if (QMessageBox::warning(nullptr, "Warning", "Do you really want to remove " + name + "?", QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok)
                 {
-                    QDir dir(itemPath);
+                    QDir dir(path);
                     dir.removeRecursively();
                 }
                 else continue;
             }
             else
             {
-                QFile file(itemPath);
+                QFile file(path);
                 file.remove();
             }
         }
@@ -471,20 +448,7 @@ void mainWindow::zip()
 {
     int i = 0;
     QString zipPath;
-    QString newPath = currentDir + QDir::separator() + "output.zip";
-    while (true)
-    {
-        if (!QFileInfo::exists(newPath))
-        {
-            zipPath = newPath;
-            break;
-        }
-        else
-        {
-            i++;
-            newPath = currentDir + QDir::separator() + "output" + " (" + QString::number(i) + ").zip";
-        }        
-    }
+    zipPath = getAvailableName(currentDir + QDir::separator() + "output", ".zip");
     QuaZip zipArchive(zipPath);
     if(!zipArchive.open(QuaZip::mdCreate))
     {
@@ -508,14 +472,14 @@ void mainWindow::addToZip(const QString &filePath, const QString &parentDir, Qua
         inZipPath = fileInfo.fileName();
     } else
     {
-        inZipPath = parentDir + "/" + fileInfo.fileName();
+        inZipPath = parentDir + QDir::separator() + fileInfo.fileName();
     }
     if (fileInfo.isDir())
     {
         if (!inZipPath.isEmpty())
         {
             QuaZipFile dirZipFile(zipArchive);
-            QuaZipNewInfo dirInfo(inZipPath + "/", filePath);
+            QuaZipNewInfo dirInfo(inZipPath + QDir::separator(), filePath);
             if (dirZipFile.open(QIODevice::WriteOnly, dirInfo))
             {
                 dirZipFile.close();
@@ -540,7 +504,8 @@ void mainWindow::addToZip(const QString &filePath, const QString &parentDir, Qua
                 QByteArray buffer;
                 buffer.resize(chunkSize);
                 qint64 bytesRead;
-                while ((bytesRead = file.read(buffer.data(), chunkSize)) > 0) {
+                while ((bytesRead = file.read(buffer.data(), chunkSize)) > 0)
+                {
                     zipFile.write(buffer.data(), bytesRead);
                 }
                 zipFile.close();
@@ -556,19 +521,7 @@ void mainWindow::unzip()
     QString zipPath = getFilePath(index[0]);
     QFileInfo info(zipPath);
     int i = 0;
-    QString newPath = currentDir + QDir::separator() + info.baseName();
-    while (true)
-    {
-        if (!QFileInfo::exists(newPath))
-        {
-            break;
-        }
-        else
-        {
-            i++;
-            newPath = currentDir + QDir::separator() + info.baseName() + " (" + QString::number(i) + ")";
-        }
-    }
+    QString newPath = getAvailableName(currentDir + QDir::separator() + info.baseName(), "");
     QDir dir;
     dir.mkpath(newPath);
 
@@ -582,7 +535,7 @@ void mainWindow::unzip()
     for (bool b = zipArchive.goToFirstFile(); b; b = zipArchive.goToNextFile())
     {
         QString temp = zipArchive.getCurrentFileName();
-        if (temp.endsWith(QDir::separator())) dir.mkpath(newPath + QDir::separator() + temp);
+        if (temp.endsWith('/')) dir.mkpath(newPath + QDir::separator() + temp);
         else filePaths.append(temp);
     }
     foreach (QString filePath, filePaths)
@@ -599,7 +552,8 @@ void mainWindow::unzip()
                     QByteArray buffer;
                     buffer.resize(chunkSize);
                     qint64 bytesRead;
-                    while ((bytesRead = zipFile.read(buffer.data(), chunkSize)) > 0) {
+                    while ((bytesRead = zipFile.read(buffer.data(), chunkSize)) > 0)
+                    {
                         file.write(buffer.data(), bytesRead);
                     }
                     file.close();
@@ -657,7 +611,6 @@ int mainWindow::conflict(QString &d)
 {
     QString type;
     const QFileInfo info(d);
-    const QString name = info.fileName();
     if (info.isDir()) type = "Directory";
     else type = "File";
     QMessageBox msg;
@@ -680,4 +633,21 @@ int mainWindow::conflict(QString &d)
     else return 0;
 }
 
-
+QString mainWindow::getAvailableName(QString path, QString suffix)
+{
+    int i = 0;
+    QString newPath = path + suffix;
+    while (true)
+    {
+        if (!QFileInfo::exists(newPath))
+        {
+            break;
+        }
+        else
+        {
+            i++;
+            newPath = path + " (" + QString::number(i) + ")" + suffix;
+        }
+    }
+    return newPath;
+}

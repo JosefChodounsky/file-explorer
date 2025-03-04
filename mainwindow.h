@@ -56,6 +56,7 @@ private:
     bool isQFileSystemModel();
     void showContextMenu(const QPoint &pos);
     QString permissions(QFileInfo &info);
+    QString getAvailableName(QString path, QString suffix);
     int conflict(QString &d);
     int isArchive();
     QFileSystemModel *fileModel;
