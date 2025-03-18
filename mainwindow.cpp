@@ -58,6 +58,7 @@ void mainWindow::setupFileListView()
     ui->listViewFiles->setModel(fileModel);
     ui->listViewFiles->setRootIndex(fileModel->index(QDir::homePath()));
     ui->txtCurrentPath->setText(currentDir);
+    statusBar()->clearMessage();
 }
 
 void mainWindow::on_btnCreateDir_clicked()
@@ -95,7 +96,8 @@ void mainWindow::on_listViewFiles_doubleClicked()
 {
     QModelIndex index = ui->listViewFiles->currentIndex();
     QString itemText = index.data(Qt::DisplayRole).toString();
-    QString newDir = QDir::cleanPath(currentDir + QDir::separator() + itemText);    
+    QString newDir = QDir::cleanPath(currentDir + QDir::separator() + itemText);
+    QFileInfo info(newDir);
     if (QFileInfo::exists(newDir))
     {
         if (QFileInfo(newDir).isDir())
@@ -105,9 +107,13 @@ void mainWindow::on_listViewFiles_doubleClicked()
                 ui->searchTxt->clear();
                 resetFileView();
             }
-            currentDir = newDir;
-            ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
-            ui->txtCurrentPath->setText(currentDir);
+            if (info.permission(QFile::ReadGroup))
+            {
+                currentDir = newDir;
+                ui->listViewFiles->setRootIndex(fileModel->index(currentDir));
+                ui->txtCurrentPath->setText(currentDir);
+            }
+            else QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, you don't have permission to read this directory:  " + info.fileName(), QMessageBox::Ok);
         }
         else
         {
@@ -323,56 +329,63 @@ void mainWindow::paste ()
 {
     if (!clipboard.isEmpty())
     {
-        try
+        QStringList clipboard_copy = clipboard;
+        bool mv_copy = mv;
+        statusBar()->showMessage("Copying, please wait...");
+        QTimer::singleShot(10, [this, clipboard_copy, mv_copy]()
         {
-            foreach (const QString oldPath, clipboard)
-            {                
-                const QFileInfo info(oldPath);
-                const QString baseName = info.baseName();
-                const QString completeSuffix = info.completeSuffix();
-                QString name = info.fileName();
-                QString newPath = currentDir + QDir::separator() + name;
-                if (QFile::exists(newPath))
+            try
+            {
+                foreach (const QString oldPath, clipboard_copy)
                 {
-                    int response;
-                    if (oldPath == newPath) response = 2;
-                    else response = conflict(newPath);
-                    if (response == 0) break;
-                    if (response == 1) del(newPath);
-                    if (response == 2)
+                    const QFileInfo info(oldPath);
+                    const QString baseName = info.baseName();
+                    const QString completeSuffix = info.completeSuffix();
+                    QString name = info.fileName();
+                    QString newPath = currentDir + QDir::separator() + name;
+                    if (QFile::exists(newPath))
                     {
-                        QString suffix;
-                        if (completeSuffix != "")suffix = "." + completeSuffix;
-                        else suffix = "";
-                        newPath = getAvailableName(currentDir + QDir::separator() + baseName, suffix);
+                        int response;
+                        if (oldPath == newPath) response = 2;
+                        else response = conflict(newPath);
+                        if (response == 0) break;
+                        if (response == 1) del(newPath);
+                        if (response == 2)
+                        {
+                            QString suffix;
+                            if (completeSuffix != "")suffix = "." + completeSuffix;
+                            else suffix = "";
+                            newPath = getAvailableName(currentDir + QDir::separator() + baseName, suffix);
+                        }
                     }
-                }
-                if (info.isDir())
-                {                    
-                    if (!currentDir.startsWith(oldPath))
+                    if (info.isDir())
                     {
-                        QDir dir;
-                        dir.mkpath(newPath);
-                        pasteRecursively(oldPath, newPath);
+                        if (!currentDir.startsWith(oldPath))
+                        {
+                            QDir dir;
+                            dir.mkpath(newPath);
+                            pasteRecursively(oldPath, newPath);
+                        }
+                        else
+                        {
+                            QMessageBox::critical(nullptr, "Error", "Can't paste a directory in itself.  ", QMessageBox::Ok);
+                        }
                     }
                     else
                     {
-                        QMessageBox::critical(nullptr, "Error", "Can't paste a directory in itself.  ", QMessageBox::Ok);
+                        if (!QFile::copy(oldPath, newPath))throw std::runtime_error("Error in copying of a file.");
                     }
+                    if (mv_copy) del(oldPath);
                 }
-                else
-                {
-                    if (!QFile::copy(oldPath, newPath))throw std::runtime_error("Error in copying of a file.");
-                }
-                if (mv) del(oldPath);
+                clipboard.clear();
             }
-        }
-        catch (std::exception ex)
-        {
-            QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
-        }
+            catch (std::exception ex)
+            {
+                QMessageBox::critical(nullptr, "Error", "Operation unsuccessful, check if you have write permission. ", QMessageBox::Ok);
+            }
+            statusBar()->clearMessage();
+        });
     }
-    clipboard.clear();
 }
 
 void mainWindow::rename ()
@@ -458,21 +471,26 @@ void mainWindow::del (QString d)
 
 void mainWindow::zip()
 {
-    int i = 0;
-    QString zipPath;
-    zipPath = getAvailableName(currentDir + QDir::separator() + "output", ".zip");
-    QuaZip zipArchive(zipPath);
-    if(!zipArchive.open(QuaZip::mdCreate))
+    statusBar()->showMessage("Compressing, please wait...");
+    QTimer::singleShot(10, [this]()
     {
-        QMessageBox::critical(nullptr, "Error", "Failed to create " + zipPath, QMessageBox::Ok);
-        return;
-    }
-    foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
-    {
-        QString filePath = getFilePath(index);
-        addToZip(filePath, "", &zipArchive);
-    }
-    zipArchive.close();
+        int i = 0;
+        QString zipPath;
+        zipPath = getAvailableName(currentDir + QDir::separator() + "output", ".zip");
+        QuaZip zipArchive(zipPath);
+        if(!zipArchive.open(QuaZip::mdCreate))
+        {
+            QMessageBox::critical(nullptr, "Error", "Failed to create " + zipPath, QMessageBox::Ok);
+            return;
+        }
+        foreach(const QModelIndex &index, ui->listViewFiles->selectionModel()->selectedIndexes())
+        {
+            QString filePath = getFilePath(index);
+            addToZip(filePath, "", &zipArchive);
+        }
+        zipArchive.close();
+        statusBar()->clearMessage();
+    });
 }
 
 void mainWindow::addToZip(const QString &filePath, const QString &parentDir, QuaZip *zipArchive)
@@ -529,52 +547,57 @@ void mainWindow::addToZip(const QString &filePath, const QString &parentDir, Qua
 
 void mainWindow::unzip()
 {
-    QModelIndexList index = ui->listViewFiles->selectionModel()->selectedIndexes();
-    QString zipPath = getFilePath(index[0]);
-    QFileInfo info(zipPath);
-    int i = 0;
-    QString newPath = getAvailableName(currentDir + QDir::separator() + info.baseName(), "");
-    QDir dir;
-    dir.mkpath(newPath);
+    statusBar()->showMessage("Decompressing, please wait...");
+    QTimer::singleShot(10, [this]()
+    {
+        QModelIndexList index = ui->listViewFiles->selectionModel()->selectedIndexes();
+        QString zipPath = getFilePath(index[0]);
+        QFileInfo info(zipPath);
+        int i = 0;
+        QString newPath = getAvailableName(currentDir + QDir::separator() + info.baseName(), "");
+        QDir dir;
+        dir.mkpath(newPath);
 
-    QuaZip zipArchive(zipPath);
-    if(!zipArchive.open(QuaZip::mdUnzip))
-    {
-        QMessageBox::critical(nullptr, "Error", "Failed to open " + zipPath, QMessageBox::Ok);
-        return;
-    }
-    QStringList filePaths;
-    for (bool b = zipArchive.goToFirstFile(); b; b = zipArchive.goToNextFile())
-    {
-        QString temp = zipArchive.getCurrentFileName();
-        if (temp.endsWith('/')) dir.mkpath(newPath + QDir::separator() + temp);
-        else filePaths.append(temp);
-    }
-    foreach (QString filePath, filePaths)
-    {
-        QFile file(newPath + QDir::separator() + filePath);
-        if (zipArchive.setCurrentFile(filePath))
+        QuaZip zipArchive(zipPath);
+        if(!zipArchive.open(QuaZip::mdUnzip))
         {
-            if (file.open(QIODevice::WriteOnly))
+            QMessageBox::critical(nullptr, "Error", "Failed to open " + zipPath, QMessageBox::Ok);
+            return;
+        }
+        QStringList filePaths;
+        for (bool b = zipArchive.goToFirstFile(); b; b = zipArchive.goToNextFile())
+        {
+            QString temp = zipArchive.getCurrentFileName();
+            if (temp.endsWith('/')) dir.mkpath(newPath + QDir::separator() + temp);
+            else filePaths.append(temp);
+        }
+        foreach (QString filePath, filePaths)
+        {
+            QFile file(newPath + QDir::separator() + filePath);
+            if (zipArchive.setCurrentFile(filePath))
             {
-                QuaZipFile zipFile(&zipArchive);
-                if (zipFile.open(QIODevice::ReadOnly))
+                if (file.open(QIODevice::WriteOnly))
                 {
-                    const qint64 chunkSize = 4 * 1024 * 1024; // 4MiB
-                    QByteArray buffer;
-                    buffer.resize(chunkSize);
-                    qint64 bytesRead;
-                    while ((bytesRead = zipFile.read(buffer.data(), chunkSize)) > 0)
+                    QuaZipFile zipFile(&zipArchive);
+                    if (zipFile.open(QIODevice::ReadOnly))
                     {
-                        file.write(buffer.data(), bytesRead);
+                        const qint64 chunkSize = 4 * 1024 * 1024; // 4MiB
+                        QByteArray buffer;
+                        buffer.resize(chunkSize);
+                        qint64 bytesRead;
+                        while ((bytesRead = zipFile.read(buffer.data(), chunkSize)) > 0)
+                        {
+                            file.write(buffer.data(), bytesRead);
+                        }
+                        file.close();
                     }
-                    file.close();
+                    zipFile.close();
                 }
-                zipFile.close();
             }
         }
-    }
-    zipArchive.close();
+        zipArchive.close();
+        statusBar()->clearMessage();
+    });
 }
 
 void mainWindow::properties ()

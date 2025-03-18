@@ -18,6 +18,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QStringList \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QTextStream \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QTimeZone \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QTimer \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/Qt \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/QtGlobal \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/q20functional.h \
@@ -35,6 +36,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qatomic.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qatomic_cxx11.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qbasicatomic.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qbasictimer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qbindingstorage.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qbytearray.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qbytearrayalgorithms.h \
@@ -146,6 +148,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qtdeprecationmarkers.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qtenvironmentvariables.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qtextstream.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qtimer.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qtimezone.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qtmetamacros.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtCore/qtnoop.h \
@@ -230,6 +233,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMenu \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QMessageBox \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QPushButton \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QStatusBar \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/QVBoxLayout \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractbutton.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -255,6 +259,7 @@
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qrubberband.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qsizepolicy.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qslider.h \
+  /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qstatusbar.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qstyle.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qstyleoption.h \
   /home/josef/Qt/6.8.0/gcc_64/include/QtWidgets/qtabbar.h \

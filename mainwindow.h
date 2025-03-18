@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStatusBar>
 #include <QPushButton>
 #include <QLineEdit>
 #include <QListWidget>
@@ -12,6 +13,7 @@
 #include <QFileSystemModel>
 #include <QMouseEvent>
 #include <QAction>
+#include <QTimer>
 #include <QMenu>
 #include <QInputDialog>
 #include <QMessageBox>
