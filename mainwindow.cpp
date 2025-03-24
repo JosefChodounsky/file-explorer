@@ -169,28 +169,32 @@ void mainWindow::performSearch(const QString& keyword)
         resetFileView();
         return;
     }
-
-    QFileInfoList results = findFiles(currentDir, keyword);
-
-    QStandardItemModel* searchModel = new QStandardItemModel(this);
-
-    foreach (const QFileInfo &fileInfo, results)
+    statusBar()->showMessage("Searching, please wait...");
+    QTimer::singleShot(10, [this, keyword]()
     {
-        QStandardItem *item = new QStandardItem;
-        item->setText(fileInfo.fileName());
-        item->setData(fileInfo.filePath(), Qt::UserRole);
+        QFileInfoList results = findFiles(currentDir, keyword);
 
-        if (fileInfo.isDir())
+        QStandardItemModel *searchModel = new QStandardItemModel(this);
+
+        foreach (const QFileInfo &fileInfo, results)
         {
-            item->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
+            QStandardItem *item = new QStandardItem;
+            item->setText(fileInfo.fileName());
+            item->setData(fileInfo.filePath(), Qt::UserRole);
+
+            if (fileInfo.isDir())
+            {
+                item->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
+            }
+            else
+            {
+                item->setIcon(style()->standardIcon(QStyle::SP_FileIcon));
+            }
+            searchModel->appendRow(item);
         }
-        else
-        {
-            item->setIcon(style()->standardIcon(QStyle::SP_FileIcon));
-        }
-        searchModel->appendRow(item);
-    }
-    ui->listViewFiles->setModel(searchModel);
+        ui->listViewFiles->setModel(searchModel);
+        statusBar()->clearMessage();
+    });
 }
 
 void mainWindow::resetFileView()
@@ -403,7 +407,7 @@ void mainWindow::rename ()
             if (ok && !newName.isEmpty())
             {
                 QFile file(oldPath);
-                file.rename(path + QDir::separator() + newName);
+                if(!file.rename(path + QDir::separator() + newName)) QMessageBox::critical(nullptr, "Error", "File with this name already exists", QMessageBox::Ok);
             }
         }
         if (!isQFileSystemModel()) performSearch(ui->searchTxt->text());;
