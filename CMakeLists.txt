@@ -2,77 +2,66 @@ cmake_minimum_required(VERSION 3.16)
 
 project(file-explorer VERSION 0.1 LANGUAGES CXX)
 
+# Set build type to Release
+set(CMAKE_BUILD_TYPE Release)
+
+# Enable additional Qt components
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/QuaZip" ${CMAKE_PREFIX_PATH})
 
-include_directories("/usr/local/include/QuaZip")
+unset(CMAKE_PREFIX_PATH)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(OpenGL REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS
+    Widgets
+    Core
+    Gui
+)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
+    Widgets
+    Core
+    Gui
+)
+
 find_package(QuaZip-Qt6 REQUIRED)
+include_directories(${QuaZip-Qt6_INCLUDE_DIRS})
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    propertiesdialog.h
+    propertiesdialog.cpp
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(file-explorer
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+add_executable(file-explorer
+    ${PROJECT_SOURCES}
+)
 
-        propertiesdialog.h propertiesdialog.cpp
+target_link_libraries(file-explorer
+    PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Gui
+    QuaZip::QuaZip
+    ZLIB::ZLIB
+    OpenGL::GL
+)
 
-
-    )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET file-explorer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(file-explorer SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(file-explorer
-            ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
-
-target_link_libraries(file-explorer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets QuaZip::QuaZip Qt6::Core ZLIB::ZLIB)
-
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.file-explorer)
-endif()
 set_target_properties(file-explorer PROPERTIES
-    ${BUNDLE_ID_OPTION}
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/release
 )
 
+# Installation
 include(GNUInstallDirs)
 install(TARGETS file-explorer
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(file-explorer)
-endif()

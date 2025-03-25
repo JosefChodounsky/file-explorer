@@ -23,8 +23,8 @@
 #include <QStandardItem>
 #include <QDirIterator>
 
-#include <QuaZip-Qt6-1.4/quazip/quazip.h>
-#include <QuaZip-Qt6-1.4/quazip/quazipfile.h>
+#include <quazip/quazip.h>
+#include <quazip/quazipfile.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
